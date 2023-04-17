@@ -1,0 +1,50 @@
+﻿@model ProductRegistrationViewModel;
+
+@{
+	ViewData["Title"] = "Register new products";
+}
+
+<section class="product-manager">
+	<div class="container">
+		<div class="title">Add a new product</div>
+
+		<form method="post" novalidate>
+			<div asp-validation-summary="ModelOnly" class="error"></div>
+
+			<div class="product-name form-group">
+				<label asp-for="Name"></label>
+				<input asp-for="Name" />
+				<span asp-validation-for="Name" class="error"></span>
+			</div>
+
+			<div class="product-price form-group">
+				<label asp-for="Price"></label>
+				<input asp-for="Price" type="text" />
+				<span asp-validation-for="Price" class="error"></span>
+
+			</div>
+			<div class="product-category form-group">
+				<label asp-for="Category"></label>
+				<input asp-for="Category" />
+				<span asp-validation-for="Category" class="error"></span>
+			</div>
+
+			<div class="product-description form-group">
+				<label asp-for="Description"></label>
+				<textarea asp-for="Description"></textarea>
+				<span asp-validation-for="Description" class="error"></span>
+			</div>
+			<div class="product-image-hero form-group">
+				<label asp-for="HeroImageUrl"></label>
+				<input asp-for="HeroImageUrl" />
+				<span asp-validation-for="HeroImageUrl" class="error"></span>
+
+			</div>
+			<div class="product-image form-group">
+				<label asp-for="ExtraImageUrl"></label>
+				<input asp-for="ExtraImageUrl" />
+			</div>
+			<button class="btn-theme">Add Product</button>
+		</form>
+	</div>
+</section>

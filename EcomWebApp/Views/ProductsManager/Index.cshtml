@@ -1,0 +1,27 @@
+﻿
+<div style="padding-top: 90px"></div>
+
+@{
+	ViewData["Title"] = "All products";
+
+	var products = await productService.GetAllAsync();
+}
+<section class="product-manager-list">
+
+	<div class="container">
+		<div class="list-header">
+			<div class="title">ALL PRODUCTS</div>	<a class="link" asp-controller="productsmanager" asp-action="register">ADD NEW PRODUCTS</a>
+		</div>
+		
+		@if (products != null)
+		{
+			foreach(var product in products)
+			{
+			<partial name="/Views/Partials/_ProductManagerListItem.cshtml" model="product"/>
+				
+			}
+		}
+
+
+	</div>
+</section>
