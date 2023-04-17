@@ -1,0 +1,14 @@
+﻿@model ProductModel
+
+<div class="product-list-item">
+	<div class="listviewrow">
+		<img src="@Model.HeroImageUrl" alt="placeholder" />
+		<div class="name">@Model.Name</div>
+		<div class="price">$@Model.Price</div>
+		<div class="category">@Model.Category</div>
+	</div>
+
+	<div class="description">
+		<div>@Model.Description</div>
+	</div>
+</div>

@@ -1,0 +1,42 @@
+﻿@model UpForSaleViewModel;
+@{
+    var product1 = Model.GridItems.FirstOrDefault();
+    var product2 = Model.GridItems.LastOrDefault();
+}
+
+@if (Model != null)
+{
+    <section class="up-to-sell">
+        <div class="container">
+            <div class="collection-grid">
+                <div class="item-1">
+                    @if (product1 != null)
+                    {
+                        <partial name="/Views/Partials/_GridItem.cshtml" model="@product1" />
+                    }
+
+                </div>
+                <div class="discover">
+
+                    <div class="collection-content">
+                        <div class="container">
+                            <div class="title-red">@Model.UpForSale.RedTitle</div>
+                            <div class="title">@Model.UpForSale.Title</div>
+                            <div class="ingress">@Model.UpForSale.Ingress</div>
+                            <div class="text">@Model.UpForSale.Description</div>
+                            <a href="#" class="link">Discover More</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="item-2">
+                    @if (product2 != null)
+                    {
+                        <partial name="/Views/Partials/_GridItem.cshtml" model="@product2" />
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+}

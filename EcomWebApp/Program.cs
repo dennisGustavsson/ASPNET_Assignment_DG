@@ -1,9 +1,14 @@
+using EcomWebApp.Contexts;
+using EcomWebApp.Services;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-
+builder.Services.AddScoped<ShowcaseService>(); //new ShowcaseService()
+builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("ProductSql")));
+builder.Services.AddScoped<ProductService>();
 
 
 
@@ -12,7 +17,6 @@ builder.Services.AddControllersWithViews();
 
 
 var app = builder.Build();
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
