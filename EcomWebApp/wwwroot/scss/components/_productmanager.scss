@@ -1,0 +1,85 @@
+.product-manager {
+    padding: 20px 0 60px 0;
+
+    @include lg {
+        padding: 60px 0;
+    }
+
+    .container {
+        padding: 30px;
+
+        @include md {
+            // border: 1px solid $color-dark-5;
+        }
+    }
+
+    .title {
+        margin-bottom: 40px;
+        text-align: center;
+
+    }
+
+    form {
+        display: grid;
+        column-gap: 30px;
+        row-gap: 30px;
+        grid-template-columns: 1fr;
+        grid-template-areas: "name"
+            "price"
+            "category"
+            "description"
+            "heroimage"
+            "image"
+            "button";
+
+        @include lg {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: "name price"
+                "category none"
+                "description description"
+                "heroimage image"
+                "button button";
+        }
+
+        .product-name {
+            grid-area: name;
+        }
+
+        .product-price {
+            grid-area: price;
+        }
+
+        .product-category {
+            grid-area: category;
+        }
+
+        .product-image-hero {
+            grid-area: heroimage;
+        }
+
+        .product-image {
+            grid-area: image;
+        }
+
+
+
+
+        .product-description {
+            grid-area: description;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        button {
+            grid-area: button;
+
+            @include lg {
+                display: flex;
+                justify-self: flex-start;
+            }
+        }
+    }
+}

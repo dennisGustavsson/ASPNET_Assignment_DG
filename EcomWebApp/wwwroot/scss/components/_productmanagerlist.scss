@@ -1,0 +1,64 @@
+.product-manager-list {
+    font-family: $font-poppins;
+
+    .container {
+
+        .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+
+            .title {
+                font-weight: $font-weight-bold;
+                font-size: 1.4rem;
+                color: $color-dark-1;
+            }
+        }
+
+        .product-list-item {
+            border-bottom: 1px solid $color-dark-4;
+
+
+            @include lg {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            .listviewrow {
+                display: flex;
+                align-items: center;
+                padding-block: 1rem;
+
+                img {
+                    height: 70px;
+                }
+
+                .name {
+                    font-weight: $font-weight-semibold;
+                    width: 12rem;
+                    padding-inline: 1rem;
+                }
+
+                .price {
+                    font-weight: $font-weight-bold;
+                    width: 120px;
+                    padding-inline: 1rem;
+                }
+
+                .category {
+                    padding-inline: 1rem;
+                    width: 120px;
+                }
+            }
+
+
+            .description {
+                font-size: 12px;
+                max-width: 600px;
+                padding: 1rem;
+            }
+        }
+    }
+}
