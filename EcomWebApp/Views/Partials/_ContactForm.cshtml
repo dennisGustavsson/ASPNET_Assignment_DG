@@ -2,7 +2,7 @@
     <div class="container">
         <div class="title">Write something</div>
 
-        <form novalidate>
+        <form id="contactForm" novalidate>
             <div class="name form-group">
                 <label for="name">Your Name*</label>
                 <input id="name" type="text" @*class="invalid"*@ required>
@@ -36,7 +36,7 @@
                     <span class="checkmark"></span>
                 </label>
             </div>
-            <button class="btn-theme" type="submit">Submit</button>
+            <button id="contactBtn" class="btn-theme" type="submit">Submit</button>
         </form>
     </div>
 </section>

@@ -42,11 +42,11 @@ footerPosition('footer', document.body.scrollHeight, window.innerHeight);
 // FORM VALIDATIONS
 
 
-const contactForm = document.getElementById("form");
+const contactForm = document.getElementById("contactForm");
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const messageInput = document.getElementById("message");
-
+const contactBtn = document.getElementById("contactBtn");
 
 const validations = [
     {
@@ -92,6 +92,7 @@ contactForm.addEventListener("submit", (event) => {
                 validation.validationSpan.textContent = validation.message;
                 validation.validationDiv.className = "invalid";
                 isFormValid = false;
+
             }
         });
         if (!isFormValid) {
