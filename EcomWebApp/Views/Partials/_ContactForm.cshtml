@@ -5,13 +5,15 @@
         <form novalidate>
             <div class="name form-group">
                 <label for="name">Your Name*</label>
-                <input id="name" type="text" class="invalid" required>
-                <span class="error">Your name is required</span>
+                <input id="name" type="text" @*class="invalid"*@ required>
+                <span id="spanErrorName" class="error"></span>
+                <div id="name-validation" class=""></div>
             </div>
             <div class="email form-group">
                 <label for="email">Your Email*</label>
-                <input id="email" type="text" class="invalid">
-                <span class="error">Your email is required</span>
+                <input id="email" type="text" @*class="invalid"*@>
+                <span id="spanErrorEmail" class="error"></span>
+                <div id="email-validation" class=""></div>
             </div>
             <div class="phoneNumber form-group">
                 <label for="phone">Phone Number (optional)</label>
@@ -23,8 +25,9 @@
             </div>
             <div class="message form-group">
                 <label for="message">Message*</label>
-                <textarea id="message" class="invalid"></textarea>
-                <span class="error">Message is required</span>
+                <textarea id="message" @*class="invalid"*@></textarea>
+                <span id="spanErrorMessage" class="error"></span>
+                <div id="message-validation" class=""></div>
             </div>
             <div class="terms form-checkbox-group">
                 <label class="custom-checkbox">
@@ -33,7 +36,7 @@
                     <span class="checkmark"></span>
                 </label>
             </div>
-            <button class="btn-theme">Submit</button>
+            <button class="btn-theme" type="submit">Submit</button>
         </form>
     </div>
 </section>

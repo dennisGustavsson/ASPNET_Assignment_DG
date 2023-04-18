@@ -39,3 +39,64 @@ footerPosition('footer', document.body.scrollHeight, window.innerHeight);
 
 
 
+// FORM VALIDATIONS
+
+
+const contactForm = document.getElementById("form");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const messageInput = document.getElementById("message");
+
+
+const validations = [
+    {
+        input: nameInput, regex: /^[a-zA-Z ]{2,}$/,
+        message: "Name should only contain letters and spaces, and be at least 2 characters long.",
+        validationDiv: document.getElementById("name"),
+        validationSpan: document.getElementById("spanErrorName")
+    },
+    {
+        input: emailInput, regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        message: "Please enter a valid email address.",
+        validationDiv: document.getElementById("email"),
+        validationSpan: document.getElementById("spanErrorEmail")
+    },
+    {
+        input: messageInput, regex: /^.{10,}$/,
+        message: "Message should be at least 10 characters long.",
+        validationDiv: document.getElementById("message"),
+        validationSpan: document.getElementById("spanErrorMessage")
+    }
+];
+
+validations.forEach(validation => {
+    try {
+        validation.input.addEventListener("input", () => {
+            if (validation.regex.test(validation.input.value)) {
+                validation.validationSpan.textContent = "";
+                validation.validationDiv.className = "success";
+            } else {
+                validation.validationSpan.textContent = validation.message;
+                validation.validationDiv.className = "invalid";
+            }
+        });
+    } catch { }
+
+});
+
+contactForm.addEventListener("submit", (event) => {
+    try {
+        let isFormValid = true;
+        validations.forEach(validation => {
+            if (!validation.regex.test(validation.input.value)) {
+                validation.validationSpan.textContent = validation.message;
+                validation.validationDiv.className = "invalid";
+                isFormValid = false;
+            }
+        });
+        if (!isFormValid) {
+            event.preventDefault();
+        }
+    } catch { }
+
+});
