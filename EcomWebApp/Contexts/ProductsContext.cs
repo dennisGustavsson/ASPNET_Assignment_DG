@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EcomWebApp.Contexts
 {
-    public class DataContext : DbContext
+    public class ProductsContext : DbContext
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
+        public ProductsContext(DbContextOptions<ProductsContext> options) : base(options)
         {
         }
 

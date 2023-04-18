@@ -7,11 +7,11 @@ namespace EcomWebApp.Services;
 
 public class ProductService
 {
-    private readonly DataContext _context;
+    private readonly ProductsContext _productContext;
 
-    public ProductService(DataContext context)
+    public ProductService(ProductsContext productContext)
     {
-        _context = context;
+        _productContext = productContext;
     }
 
     public async Task<bool> CreateAsync(ProductRegistrationViewModel productRegistrationViewModel)
@@ -20,8 +20,8 @@ public class ProductService
         {
             ProductEntity productEntity = productRegistrationViewModel;
 
-            _context.Products.Add(productEntity);
-            await _context.SaveChangesAsync();
+            _productContext.Products.Add(productEntity);
+            await _productContext.SaveChangesAsync();
             return true;
         }
         catch
@@ -33,7 +33,7 @@ public class ProductService
     public async Task<IEnumerable<ProductModel>> GetAllAsync()
     {
         var products = new List<ProductModel>();
-        var items = await _context.Products.ToListAsync();
+        var items = await _productContext.Products.ToListAsync();
         foreach (var item in items)
         {
             ProductModel productModel = item;

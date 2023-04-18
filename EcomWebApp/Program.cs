@@ -7,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ShowcaseService>(); //new ShowcaseService()
-builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("ProductSql")));
+builder.Services.AddDbContext<ProductsContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("ProductSql")));
+builder.Services.AddDbContext<ContactFormContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("ContactFormSql")));
 builder.Services.AddScoped<ProductService>();
 
 
