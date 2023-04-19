@@ -12,5 +12,5 @@ public class ContactFormMessageEntity
 	public DateTime Posted { get; set; } = DateTime.Now;
 
 	public Guid SenderId { get; set; } 
-	public ContactFormSenderEntity SenderEntity { get; set; } = null!;
+	public ContactFormSenderEntity Sender { get; set; } = null!;
 }

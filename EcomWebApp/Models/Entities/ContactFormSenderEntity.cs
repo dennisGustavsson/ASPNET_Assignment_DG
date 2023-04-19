@@ -11,6 +11,6 @@ public class ContactFormSenderEntity
 	public string? PhoneNumber { get; set; }
 	public string? CompanyName { get; set; }
 
-	public ICollection<ContactFormMessageEntity> Messages { get; set; } = null!;
+	public ICollection<ContactFormMessageEntity> Messages { get; set; } = new  List<ContactFormMessageEntity>();
 
 }

@@ -35,15 +35,12 @@ namespace EcomWebApp.Migrations.ContactForm
                     b.Property<DateTime>("Posted")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("SenderEntityId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("SenderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SenderEntityId");
+                    b.HasIndex("SenderId");
 
                     b.ToTable("Messages");
                 });
@@ -75,13 +72,13 @@ namespace EcomWebApp.Migrations.ContactForm
 
             modelBuilder.Entity("EcomWebApp.Models.Entities.ContactFormMessageEntity", b =>
                 {
-                    b.HasOne("EcomWebApp.Models.Entities.ContactFormSenderEntity", "SenderEntity")
+                    b.HasOne("EcomWebApp.Models.Entities.ContactFormSenderEntity", "Sender")
                         .WithMany("Messages")
-                        .HasForeignKey("SenderEntityId")
+                        .HasForeignKey("SenderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("SenderEntity");
+                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("EcomWebApp.Models.Entities.ContactFormSenderEntity", b =>

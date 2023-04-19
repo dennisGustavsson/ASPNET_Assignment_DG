@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace EcomWebApp.Migrations.ContactForm
 {
     /// <inheritdoc />
-    public partial class Initialcontactform : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,24 +33,23 @@ namespace EcomWebApp.Migrations.ContactForm
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Posted = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SenderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SenderEntityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    SenderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Messages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Messages_Senders_SenderEntityId",
-                        column: x => x.SenderEntityId,
+                        name: "FK_Messages_Senders_SenderId",
+                        column: x => x.SenderId,
                         principalTable: "Senders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Messages_SenderEntityId",
+                name: "IX_Messages_SenderId",
                 table: "Messages",
-                column: "SenderEntityId");
+                column: "SenderId");
         }
 
         /// <inheritdoc />

@@ -1,8 +1,54 @@
-﻿@{
+﻿@model ContactFormViewModel
+@{
     ViewData["Title"] = "Contact us!";
 }
 
 
 <partial name="/Views/Partials/_Breadcrumb.cshtml" />
-<partial name="/Views/Partials/_ContactForm.cshtml" />
+<section class="contact-form">
+    <div class="container">
+        <div class="title">Write something</div>
+
+        <form method="post" id="contactForm" novalidate>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="name form-group">
+                <label asp-for="Name">Your Name*</label>
+                <input asp-for="Name" id="name" required>
+                <span asp-validation-for="Name" id="spanErrorName" class="error"></span>
+                <div id="name-validation" class=""></div>
+            </div>
+            <div class="email form-group">
+                <label asp-for="Email">Your Email*</label>
+                <input asp-for="Email" id="email">
+                <span asp-validation-for="Email" id="spanErrorEmail" class="error"></span>
+                <div id="email-validation" class=""></div>
+            </div>
+            <div class="phoneNumber form-group">
+                <label asp-for="PhoneNumber">Phone Number (optional)</label>
+                <input asp-for="PhoneNumber" id="phone">
+            </div>
+            <div class="companyName form-group">
+                <label asp-for="CompanyName">Company (optional)</label>
+                <input asp-for="CompanyName" id="company">
+            </div>
+            <div class="message form-group">
+                <label asp-for="Message">Message*</label>
+                <textarea asp-for="Message" id="message"></textarea>
+                <span asp-validation-for="Message" id="spanErrorMessage" class="error"></span>
+                <div id="message-validation" class=""></div>
+            </div>
+            <div class="terms form-checkbox-group">
+                <label class="custom-checkbox">
+                    Save my name, email in the this browser for the next time I comment.
+                    <input type="checkbox" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <button id="contactBtn" class="btn-theme" type="submit">Submit</button>
+        </form>
+    </div>
+</section>
+@*<partial name="/Views/Partials/_ContactForm.cshtml" />*@
 <partial name="/Views/Partials/_GoogleMaps.cshtml" />
