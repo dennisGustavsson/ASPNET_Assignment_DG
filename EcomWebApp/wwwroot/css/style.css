@@ -1036,3 +1036,52 @@ footer .container {
   max-width: 600px;
   padding: 1rem;
 }
+
+.login-form {
+  padding: 20px 0 60px 0;
+}
+@media (min-width: 992px) {
+  .login-form {
+    padding: 60px 0;
+  }
+}
+.login-form .container {
+  border: 0px solid #E1E1E1;
+  padding: 30px;
+  margin-top: 80px;
+}
+@media (min-width: 768px) {
+  .login-form .container {
+    border: 1px solid #E1E1E1;
+    max-width: 60%;
+  }
+}
+.login-form .title {
+  margin-bottom: 40px;
+}
+.login-form form {
+  display: grid;
+  column-gap: 30px;
+  row-gap: 20px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "email" "password" "terms" "button";
+}
+.login-form form .email {
+  grid-area: email;
+}
+.login-form form .password {
+  grid-area: password;
+}
+.login-form form .terms {
+  grid-area: terms;
+  margin: 10px 0;
+}
+.login-form form button {
+  grid-area: button;
+}
+@media (min-width: 992px) {
+  .login-form form button {
+    display: flex;
+    justify-self: flex-start;
+  }
+}

@@ -42,7 +42,8 @@ footerPosition('footer', document.body.scrollHeight, window.innerHeight);
 // FORM VALIDATIONS
 
 
-const contactForm = document.getElementById("contactForm");
+/*const contactForm = document.getElementById("contactForm");*/
+let formElement;
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const messageInput = document.getElementById("message");
@@ -84,20 +85,36 @@ validations.forEach(validation => {
 
 });
 
-contactForm.addEventListener("submit", (event) => {
-    try {
-        let isFormValid = true;
-        validations.forEach(validation => {
-            if (!validation.regex.test(validation.input.value)) {
-                validation.validationSpan.textContent = validation.message;
-                validation.validationDiv.className = "invalid";
-                isFormValid = false;
+try {
+    if (document.getElementById("contactForm")) {
+        formElement = document.getElementById("contactForm");
+        console.log(formElement)
+    }
+    else if (document.getElementById("loginForm")) {
+        formElement = getElementById("loginForm")
+        console.log(formElement);
+    }
 
+} catch { }
+
+try {
+    formElement.addEventListener("submit", (event) => {
+
+            let isFormValid = true;
+            validations.forEach(validation => {
+                if (!validation.regex.test(validation.input.value)) {
+                    validation.validationSpan.textContent = validation.message;
+                    validation.validationDiv.className = "invalid";
+                    isFormValid = false;
+
+                }
+            });
+            if (!isFormValid) {
+                event.preventDefault();
             }
-        });
-        if (!isFormValid) {
-            event.preventDefault();
-        }
-    } catch { }
 
-});
+
+    });
+} catch { }
+
+

@@ -4,29 +4,29 @@
     <div class="container">
         <div class="title">Write something</div>
 
-        <form method="post" id="contactForm" novalidate>
-            
+        <form method="post" id="contactForm" novalidate autocomplete="off">
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="name form-group">
                 <label asp-for="Name">Your Name*</label>
-                <input asp-for="Name" id="name"  required>
+                <input asp-for="Name" id="name" required autocomplete="off">
                 <span asp-validation-for="Name" id="spanErrorName" class="error"></span>
                 <div id="name-validation" class=""></div>
             </div>
             <div class="email form-group">
                 <label asp-for="Email">Your Email*</label>
-                <input asp-for="Email" id="email">
+                <input asp-for="Email" id="email" autocomplete="off">
                 <span asp-validation-for="Email" id="spanErrorEmail" class="error"></span>
                 <div id="email-validation" class=""></div>
             </div>
             <div class="phoneNumber form-group">
                 <label asp-for="PhoneNumber">Phone Number (optional)</label>
-                <input asp-for="PhoneNumber" id="phone">
+                <input asp-for="PhoneNumber" id="phone" autocomplete="off">
             </div>
             <div class="companyName form-group">
                 <label asp-for="CompanyName">Company (optional)</label>
-                <input asp-for="CompanyName" id="company">
+                <input asp-for="CompanyName" id="company" autocomplete="off">
             </div>
             <div class="message form-group">
                 <label asp-for="Message">Message*</label>
