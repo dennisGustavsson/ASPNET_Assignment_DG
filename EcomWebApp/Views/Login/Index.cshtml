@@ -1,9 +1,7 @@
 ﻿@model LoginViewModel
-
 @{
     ViewData["Title"] = "Login to your account";
 }
-
 <section class="login-form">
     <div class="container">
         <div class="title">@ViewData["Title"]</div>
@@ -14,10 +12,9 @@
 
             <div>Dont have an account? <a asp-controller="register" asp-action="index">Register a new account</a></div>
             <div class="email form-group">
-                <label asp-for="Email">Your Email*</label>
+                <label asp-for="Email"></label>
                 <input asp-for="Email" id="email" autocomplete="off">
                 <span asp-validation-for="Email" id="spanErrorEmail" class="error"></span>
-                <div id="email-validation" class=""></div>
             </div>
             <div class="password form-group">
                 <label asp-for="Password"></label>
@@ -27,8 +24,8 @@
 
             <div class="terms form-checkbox-group">
                 <label class="custom-checkbox">
-                    Save my name, email in the this browser for the next time I comment.
-                    <input type="checkbox" checked="checked">
+                    <label asp-for="RememberMe"></label>
+                    <input asp-for="RememberMe">
                     <span class="checkmark"></span>
                 </label>
             </div>
