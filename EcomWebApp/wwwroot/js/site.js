@@ -51,13 +51,13 @@ const contactBtn = document.getElementById("contactBtn");
 
 const validations = [
     {
-        input: nameInput, regex: /^[a-zA-Z ]{2,}$/,
+        input: nameInput, regex: /^[A-Za-zÀ-ÖØ-öø-ÿ]+([- ][A-Za-zÀ-ÖØ-öø-ÿ]+)*$/,
         message: "Name should only contain letters and spaces, and be at least 2 characters long.",
         validationDiv: document.getElementById("name"),
         validationSpan: document.getElementById("spanErrorName")
     },
     {
-        input: emailInput, regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        input: emailInput, regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[a-zA-Z]{2,}(?:[^\W_]|-)*$/,
         message: "Please enter a valid email address.",
         validationDiv: document.getElementById("email"),
         validationSpan: document.getElementById("spanErrorEmail")

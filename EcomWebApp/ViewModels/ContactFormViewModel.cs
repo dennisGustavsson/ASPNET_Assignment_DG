@@ -9,7 +9,9 @@ public class ContactFormViewModel
 	public string Name { get; set; } = null!;
 
 	[DataType(DataType.EmailAddress)]
-	[Required(ErrorMessage = "An email address is required")]
+    [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[a-zA-Z]{2,}(?:[^\W_]|-)*$",
+         ErrorMessage = "Characters are not allowed.")]
+    [Required(ErrorMessage = "An email address is required")]
 	public string Email { get; set; } = null!;
 
 	public string? PhoneNumber { get; set; }

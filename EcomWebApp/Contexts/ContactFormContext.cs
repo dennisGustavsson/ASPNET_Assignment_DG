@@ -5,7 +5,7 @@ namespace EcomWebApp.Contexts
 {
 	public class ContactFormContext : DbContext
 	{
-		public ContactFormContext(DbContextOptions options) : base(options)
+		public ContactFormContext(DbContextOptions<ContactFormContext> options) : base(options)
 		{
 		}
 
