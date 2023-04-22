@@ -1,12 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EcomWebApp.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
-namespace EcomWebApp.Controllers
+namespace EcomWebApp.Controllers;
+
+public class LoginController : Controller
 {
-    public class LoginController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Index(LoginViewModel viewModel)
+    {
+        if(ModelState.IsValid)
         {
-            return View();
+
+        return View();
         }
+
+        ModelState.AddModelError("", "Incorrect email or password.");
+        return View(viewModel);
     }
 }

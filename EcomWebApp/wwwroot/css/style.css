@@ -1085,3 +1085,85 @@ footer .container {
     justify-self: flex-start;
   }
 }
+
+.register-form {
+  padding: 20px 0 60px 0;
+}
+@media (min-width: 992px) {
+  .register-form {
+    padding: 60px 0;
+  }
+}
+.register-form .container {
+  border: 0px solid #E1E1E1;
+  padding: 30px;
+  margin-top: 80px;
+}
+@media (min-width: 768px) {
+  .register-form .container {
+    border: 1px solid #E1E1E1;
+    max-width: 60%;
+  }
+}
+.register-form .title {
+  margin-bottom: 40px;
+}
+.register-form form {
+  display: grid;
+  column-gap: 30px;
+  row-gap: 15px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "name" "email" "phoneNumber" "companyName" "message" "terms" "button";
+}
+@media (min-width: 992px) {
+  .register-form form {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "firstname lastname" "streetname streetname" "postalcode city" "phoneNumber companyName" "email email" "password password" "confirmpassword confirmpassword" "profileimage profileimage" "terms terms" "button button";
+  }
+}
+.register-form form .firstname {
+  grid-area: firstname;
+}
+.register-form form .lastname {
+  grid-area: lastname;
+}
+.register-form form .streetname {
+  grid-area: streetname;
+}
+.register-form form .postalcode {
+  grid-area: postalcode;
+}
+.register-form form .city {
+  grid-area: city;
+}
+.register-form form .email {
+  grid-area: email;
+}
+.register-form form .password {
+  grid-area: password;
+}
+.register-form form .confirmpassword {
+  grid-area: confirmpassword;
+}
+.register-form form .phoneNumber {
+  grid-area: phoneNumber;
+}
+.register-form form .companyName {
+  grid-area: companyName;
+}
+.register-form form .profileimage {
+  grid-area: profileimage;
+}
+.register-form form .terms {
+  grid-area: terms;
+  margin: 10px 0;
+}
+.register-form form button {
+  grid-area: button;
+}
+@media (min-width: 992px) {
+  .register-form form button {
+    display: flex;
+    justify-self: flex-start;
+  }
+}

@@ -8,7 +8,7 @@
 
         <form method="post" id="loginForm" novalidate autocomplete="off">
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="error"></div>
 
             <div>Dont have an account? <a asp-controller="register" asp-action="index">Register a new account</a></div>
             <div class="email form-group">
@@ -19,6 +19,8 @@
             <div class="password form-group">
                 <label asp-for="Password"></label>
                 <input asp-for="Password" id="password" autocomplete="off">
+                <span asp-validation-for="Password" id="spanErrorPassword" class="error"></span>
+
             </div>
 
 
