@@ -1,4 +1,4 @@
-﻿using EcomWebApp.Services;
+﻿using EcomWebApp.Helpers.Services;
 using EcomWebApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 

@@ -3,7 +3,7 @@ using EcomWebApp.Models;
 using EcomWebApp.Models.Entities;
 using EcomWebApp.ViewModels;
 using Microsoft.EntityFrameworkCore;
-namespace EcomWebApp.Services;
+namespace EcomWebApp.Helpers.Services;
 
 public class ProductService
 {

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EcomWebApp.Models.Entities;
+using EcomWebApp.Models.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace EcomWebApp.ViewModels;
 
@@ -57,5 +59,29 @@ public class UserRegistrationViewModel
     [Required(ErrorMessage = "You need to accept the terms and agreement.")]
     public bool TermsAndAgreement { get; set; } = false;
 
+
+    public static implicit operator AppUser(UserRegistrationViewModel viewModel)
+    {
+        return new AppUser
+        {
+            UserName = viewModel.Email,
+            FirstName = viewModel.FirstName,
+            LastName = viewModel.LastName,
+            Email = viewModel.Email,
+            PhoneNumber = viewModel.PhoneNumber,
+            CompanyName = viewModel.CompanyName,
+
+        };
+    }
+
+    public static implicit operator AddressEntity(UserRegistrationViewModel viewModel)
+    {
+        return new AddressEntity
+        {
+            StreetName = viewModel.StreetName,
+            PostalCode = viewModel.PostalCode,
+            City = viewModel.City,
+        };
+    }
 
 }

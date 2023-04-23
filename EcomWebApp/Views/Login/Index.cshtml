@@ -6,13 +6,14 @@
     <div class="container">
         <div class="title">@ViewData["Title"]</div>
 
-        <form method="post" id="loginForm" novalidate autocomplete="off">
+        <form asp-route-ReturnUrl="@Model.ReturnUrl" method="post" id="loginForm" novalidate autocomplete="off">
 
             <div asp-validation-summary="ModelOnly" class="error"></div>
 
-            <div>Dont have an account? <a asp-controller="register" asp-action="index">Register a new account</a></div>
             <div class="email form-group">
                 <label asp-for="Email"></label>
+                <a asp-controller="register" asp-action="index">Register a new account</a>
+
                 <input asp-for="Email" id="email" autocomplete="off">
                 <span asp-validation-for="Email" id="spanErrorEmail" class="error"></span>
             </div>

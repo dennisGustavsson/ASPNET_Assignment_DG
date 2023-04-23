@@ -1,6 +1,6 @@
 ﻿using EcomWebApp.Models;
 
-namespace EcomWebApp.Services;
+namespace EcomWebApp.Helpers.Services;
 
 public class ShowcaseService
 {
