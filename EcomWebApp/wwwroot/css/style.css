@@ -29,6 +29,11 @@ html, body {
   position: static;
 }
 
+.userName {
+  font-size: 12px !important;
+  color: #FA3150;
+}
+
 .btn-toggle {
   cursor: pointer;
   font-family: "Poppins", sans-serif;

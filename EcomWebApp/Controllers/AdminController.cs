@@ -1,0 +1,13 @@
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EcomWebApp.Controllers;
+
+[Authorize(Roles = "systemadministrator")]
+public class AdminController : Controller
+{
+    public IActionResult Index()
+    {
+        return View();
+    }
+}

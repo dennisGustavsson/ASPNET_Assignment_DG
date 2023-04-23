@@ -5,11 +5,25 @@
             <a class="link" asp-controller="home" asp-action="Index">HOME</a>
             <a class="link" asp-controller="products" asp-action="Index">PRODUCTS</a>
             <a class="link" asp-controller="contact" asp-action="Index">CONTACT</a>
-            <a class="link" asp-controller="productsmanager" asp-action="Index">Product Manager</a>
+            @if(signInManager.IsSignedIn(User))
+            {
+                <a class="link" asp-controller="productsmanager" asp-action="Index">Product Manager</a>
+            }
         </nav>
         <nav class="menu-icons">
             <a class="link" href="#"><i class="fa-regular fa-search"></i></a>
-            <a class="link" asp-controller="login" asp-action="Index">Login</a>
+            @if(signInManager.IsSignedIn(User))
+            {
+
+                <a class="link userName" asp-action="index" asp-controller="account">@User.Identity?.Name</a>
+                <a class="link" asp-controller="logout" asp-action="index">Logout</a>
+
+            }
+            else
+            {
+                <a class="link" asp-controller="login" asp-action="Index">Login</a>
+            }
+
             <a class="link" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
         </nav>
         <div class="toggle">
