@@ -11,14 +11,15 @@ public class AuthenticationService
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
     private readonly AddressService _addressService;
+    private readonly RoleManager<IdentityRole> _roleManager;
 
 
-
-    public AuthenticationService(UserManager<AppUser> userManager, AddressService addressService, SignInManager<AppUser> signInManager)
+    public AuthenticationService(UserManager<AppUser> userManager, AddressService addressService, SignInManager<AppUser> signInManager, Microsoft.AspNetCore.Identity.RoleManager<IdentityRole> roleManager)
     {
         _userManager = userManager;
         _addressService = addressService;
         _signInManager = signInManager;
+        _roleManager = roleManager;
     }
 
     public async Task<bool> UserAlreadyExistAsync(UserRegistrationViewModel viewModel)
@@ -28,18 +29,34 @@ public class AuthenticationService
 
     public async Task<bool> RegisterUserAsync(UserRegistrationViewModel viewModel)
     {
-        AppUser appUser = viewModel;
-
-        var result = await _userManager.CreateAsync(appUser, viewModel.Password);
-        if (result.Succeeded)
+        try
         {
-            var addressEntity = await _addressService.GetOrCreateAsync(viewModel);
-            if(addressEntity != null)
+            AppUser appUser = viewModel;
+
+            var roleName = "user";
+
+            if (!await _roleManager.Roles.AnyAsync())
             {
-                await _addressService.AddAddressAsync(appUser,addressEntity);
-                return true;
+                await _roleManager.CreateAsync(new IdentityRole("admin"));
+                await _roleManager.CreateAsync(new IdentityRole("user"));
             }
-        }
+
+            if (!await _userManager.Users.AnyAsync())
+                roleName = "admin";
+
+            var result = await _userManager.CreateAsync(appUser, viewModel.Password);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(appUser, roleName);
+
+                var addressEntity = await _addressService.GetOrCreateAsync(viewModel);
+                if (addressEntity != null)
+                {
+                    await _addressService.AddAddressAsync(appUser, addressEntity);
+                    return true;
+                }
+            }
+        } catch { }
         return false;
     }
 

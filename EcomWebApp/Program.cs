@@ -17,10 +17,11 @@ builder.Services.AddDbContext<IdentityContext>(x => x.UseSqlServer(builder.Confi
 builder.Services.AddDbContext<ContactFormContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("ContactFormSql")));
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ContactFormService>();
+builder.Services.AddScoped<AuthenticationService>();
 builder.Services.AddScoped<AddressRepository>();
 builder.Services.AddScoped<UserAddressRepository>();
 builder.Services.AddScoped<AddressService>();
-builder.Services.AddScoped<AuthenticationService>();
+
 
 builder.Services.AddIdentity<AppUser, IdentityRole>( x =>
 {
@@ -28,8 +29,10 @@ builder.Services.AddIdentity<AppUser, IdentityRole>( x =>
     x.Password.RequiredLength = 8;
     x.User.RequireUniqueEmail = true;
 
-}).AddEntityFrameworkStores<IdentityContext>()
+})  .AddEntityFrameworkStores<IdentityContext>()
     .AddClaimsPrincipalFactory<CustomClaimsPrincipalFactory>();
+
+
 
 builder.Services.ConfigureApplicationCookie(x =>
 {
@@ -38,10 +41,13 @@ builder.Services.ConfigureApplicationCookie(x =>
     x.AccessDeniedPath = "/denied";
 });
 
+
 var app = builder.Build();
+app.UseHsts();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication(); // added this one
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",

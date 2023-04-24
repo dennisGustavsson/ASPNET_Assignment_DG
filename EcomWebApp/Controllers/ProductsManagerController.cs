@@ -1,9 +1,11 @@
 ﻿using EcomWebApp.Helpers.Services;
 using EcomWebApp.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcomWebApp.Controllers;
 
+[Authorize(Roles = "admin")]
 public class ProductsManagerController : Controller
 {
     private readonly ProductService _productService;

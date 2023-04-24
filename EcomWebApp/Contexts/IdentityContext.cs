@@ -16,7 +16,9 @@ public class IdentityContext : IdentityDbContext<AppUser>
 
     public DbSet<UserAddressEntity> AspNetUsersAddresses { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder builder)
+
+
+/*    protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
 
@@ -39,5 +41,5 @@ public class IdentityContext : IdentityDbContext<AppUser>
                 PasswordHash = passwordHasher.HashPassword(null!,"BytMig123!"),
                 
             });
-    }
+    }*/
 }

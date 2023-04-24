@@ -5,7 +5,7 @@
             <a class="link" asp-controller="home" asp-action="Index">HOME</a>
             <a class="link" asp-controller="products" asp-action="Index">PRODUCTS</a>
             <a class="link" asp-controller="contact" asp-action="Index">CONTACT</a>
-            @if(signInManager.IsSignedIn(User))
+            @if(signInManager.IsSignedIn(User) && User.IsInRole("admin"))
             {
                 <a class="link" asp-controller="productsmanager" asp-action="Index">Product Manager</a>
             }

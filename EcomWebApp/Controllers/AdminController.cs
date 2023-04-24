@@ -3,11 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EcomWebApp.Controllers;
 
-[Authorize(Roles = "systemadministrator")]
+[Authorize(Roles = "admin")]
 public class AdminController : Controller
 {
     public IActionResult Index()
     {
+
         return View();
     }
 }
