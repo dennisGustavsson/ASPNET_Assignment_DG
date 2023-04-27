@@ -1,0 +1,113 @@
+﻿@model ProductModel
+
+<section class="productDetails">
+
+    <div class="container">
+        <div class="img-container">
+            <div class="hero-img">
+                <img src="@Model.HeroImageUrl" />
+
+            </div>
+            <div class="extras-img">
+                <img src="/images/placeholders/120x113.svg" />
+                <img src="/images/placeholders/120x113.svg" />
+                <img src="/images/placeholders/120x113.svg" />
+                <img src="/images/placeholders/120x113.svg" />
+            </div>
+        </div>
+
+        <div class="details-container">
+            <div class="title">
+                <h2>
+                    @Model.Name
+                </h2>
+            </div>
+            <div class="ingress">
+                @Model.Description
+            </div>
+
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span>
+
+                    "Amount" of reviews
+                </span>
+            </div>
+            <div class="price">
+                <h3>$@Model.Price.ToString("F2")</h3>
+            </div>
+
+            <div class="add-to-cart">
+                <span class="quantity-input-wrapper">
+                    <button class="minusBtn">
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+
+                    <span class="amount">
+                        2
+                    </span>
+
+                    <button class="plusBtn">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                </span>
+
+
+                <button class="btn-theme"> Add to cart <i class="fa-solid fa-cart-plus"></i></button>
+            </div>
+            <div class="product-colors">
+                <i id="product-color-1" class="fa-solid fa-circle"></i>
+                <i id="product-color-2" class="fa-solid fa-circle"></i>
+                <i id="product-color-3" class="fa-solid fa-circle"></i>
+                <span>SKU: N/A</span>
+            </div>
+            <div class="add-to-wishlist">
+                <button class="btn-outline-white">Add to wishlist</button>
+            </div>
+            <div class="categories">
+                <h3>Category:</h3>
+                <span>Shoes,</span>
+            </div>
+
+
+        </div>
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="btn-theme">DESCRIPTION</button>
+                <button class="btn-outline-white">ADDITIONAL INFO</button>
+                <button class="btn-outline-white">REVIEWS (0)</button>
+                <button class="btn-outline-white">SHIPPING & DELIVERY</button>
+            </div>
+            <div class="tabs-info">
+                <div class="title">
+                    <h3>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi porro dicta soluta voluptate.</h3>
+                </div>
+                <div class="content">
+                    <div class="text-content">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime repellendus facilis itaque odio vel expedita ut hic eveniet earum, illum asperiores sed. Vitae eveniet, dolorem ducimus aspernatur commodi ratione repellendus laboriosam ipsum, necessitatibus doloribus facere excepturi sint deserunt repellat odio dolor temporibus veniam laborum praesentium debitis earum accusamus obcaecati! Officiis iste autem a reiciendis, doloribus ipsa cupiditate deleniti qui quo vel ea ex laborum esse commodi cumque nesciunt incidunt aspernatur nulla molestiae temporibus! Atque soluta corporis assumenda voluptates ratione reprehenderit deserunt blanditiis voluptatibus ipsum in eaque odit quam, esse excepturi veniam.
+                        <br>
+                        Consequuntur sint veritatis quia possimus pariatur ab, explicabo dolores?
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse blanditiis praesentium dolorem nostrum earum, molestiae tempora placeat rerum corrupti autem perferendis qui animi ut accusantium repellendus aliquid iusto accusamus, doloribus nulla id laborum totam obcaecati sunt officia! Facilis aut, laborum harum minus nobis asperiores debitis architecto earum, minima praesentium magnam.
+                        <br>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero sit perferendis sequi ullam rerum odio officiis aliquam illo maiores totam aliquid hic, quibusdam iusto odit et placeat laudantium nisi tenetur sint consequuntur iure autem dolor officia ipsam. Exercitationem minima suscipit deserunt saepe commodi cum officia facilis pariatur sequi eos porro vel, iure expedita sunt praesentium. Labore veritatis earum magni maiores?
+                    </div>
+                    <div class="img-content">
+                        <img src="/images/placeholders/469x356.svg" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+

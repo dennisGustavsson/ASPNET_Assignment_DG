@@ -42,4 +42,12 @@ public class ProductService
 
         return products;
     }
+
+    public async Task<ProductModel> GetAsync(Guid id)
+    {
+        var item = await _productContext.Products.FirstOrDefaultAsync(x => x.Id == id);
+
+            return item!;
+
+    }
 }
