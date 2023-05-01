@@ -14,7 +14,7 @@ public class AuthenticationService
     private readonly RoleManager<IdentityRole> _roleManager;
 
 
-    public AuthenticationService(UserManager<AppUser> userManager, AddressService addressService, SignInManager<AppUser> signInManager, Microsoft.AspNetCore.Identity.RoleManager<IdentityRole> roleManager)
+	public AuthenticationService(UserManager<AppUser> userManager, AddressService addressService, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
     {
         _userManager = userManager;
         _addressService = addressService;

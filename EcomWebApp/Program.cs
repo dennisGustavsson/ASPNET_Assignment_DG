@@ -21,7 +21,7 @@ builder.Services.AddScoped<AuthenticationService>();
 builder.Services.AddScoped<AddressRepository>();
 builder.Services.AddScoped<UserAddressRepository>();
 builder.Services.AddScoped<AddressService>();
-
+builder.Services.AddScoped<UsersService>();
 
 builder.Services.AddIdentity<AppUser, IdentityRole>( x =>
 {

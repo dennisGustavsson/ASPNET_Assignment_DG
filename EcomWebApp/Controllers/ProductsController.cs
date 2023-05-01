@@ -14,9 +14,11 @@ namespace EcomWebApp.Controllers
             _productService = productService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var products = await _productService.GetAllAsync();
+
+            return View(products);
         }
 
         public async Task<IActionResult> Details(Guid id)

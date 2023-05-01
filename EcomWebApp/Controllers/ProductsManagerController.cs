@@ -15,9 +15,10 @@ public class ProductsManagerController : Controller
         _productService = productService;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+		var products = await _productService.GetAllAsync();
+		return View(products);
     }
 
     public IActionResult Register()

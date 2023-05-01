@@ -7,7 +7,7 @@
             <a class="link" asp-controller="contact" asp-action="Index">CONTACT</a>
             @if(signInManager.IsSignedIn(User) && User.IsInRole("admin"))
             {
-                <a class="link" asp-controller="productsmanager" asp-action="Index">Product Manager</a>
+                <a class="link" asp-controller="admin" asp-action="Index">Backoffice <i class="fa-solid fa-user-unlock"></i></a>
             }
         </nav>
         <nav class="menu-icons">

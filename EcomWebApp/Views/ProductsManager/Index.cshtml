@@ -1,10 +1,10 @@
-﻿
+﻿@model IEnumerable<ProductModel>
 <div style="padding-top: 90px"></div>
 
 @{
 	ViewData["Title"] = "All products";
 
-	var products = await productService.GetAllAsync();
+	
 }
 <section class="product-manager-list">
 
@@ -13,9 +13,9 @@
 			<div class="title">ALL PRODUCTS</div>	<a class="link" asp-controller="productsmanager" asp-action="register">ADD NEW PRODUCTS</a>
 		</div>
 		
-		@if (products != null)
+		@if (Model != null)
 		{
-			foreach(var product in products)
+			foreach(var product in Model)
 			{
 			<partial name="/Views/Partials/_ProductManagerListItem.cshtml" model="product"/>
 				

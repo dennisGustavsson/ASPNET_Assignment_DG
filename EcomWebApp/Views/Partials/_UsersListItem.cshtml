@@ -1,0 +1,29 @@
+﻿@model UserProfileCardViewModel
+
+
+<div class="user-list-item">
+	<div class="listviewrow">
+		@*<img src="@Model.HeroImageUrl" alt="placeholder" />*@
+		<div class="fullName">@Model.FirstName @Model.LastName</div>
+		<div class="email">$@Model.Email</div>
+		<div class="address">
+			@foreach (var address in Model.Addresses)
+			{
+			<h5>@address.Address.StreetName</h5>
+			<h5>@address.Address.PostalCode</h5>
+			<h5>@address.Address.City</h5>
+
+			
+			}
+			@foreach (var role in Model.Roles)
+			{
+				<h5>@role</h5>
+
+
+
+			}
+		</div>
+	</div>
+	@*<a asp-action="index" asp-controller="account" >details</a>*@
+
+</div>
