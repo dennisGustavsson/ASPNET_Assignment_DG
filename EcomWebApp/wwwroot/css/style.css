@@ -361,6 +361,10 @@ header .menu-links {
   font-size: 20px;
   overflow: hidden;
 }
+header .menu-links .fa-user-unlock {
+  margin-left: 6px;
+  font-size: 12px;
+}
 @media (min-width: 992px) {
   header .menu-links {
     position: static;

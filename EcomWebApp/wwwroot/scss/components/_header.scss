@@ -53,6 +53,10 @@ header {
         font-size: 20px;
         overflow: hidden;
 
+        .fa-user-unlock {
+            margin-left: 6px;
+            font-size: 12px;
+        }
 
         @include lg {
             position: static;

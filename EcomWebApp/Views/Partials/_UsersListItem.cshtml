@@ -18,10 +18,41 @@
 			@foreach (var role in Model.Roles)
 			{
 				<h5>@role</h5>
-
-
-
 			}
+			<div>
+			<form asp-controller="Admin" asp-action="AddRole" method="post">
+				<select name="role">
+					<option value""> --Choose a role to ADD--</option>
+					@foreach(var role in roleManager.Roles)
+					{
+						
+						<option value="@role.Name">@role.Name</option>
+					}
+				</select>
+				<input type="hidden" name="userId" value="@Model.UserId"/>
+				<button type="submit">Save</button>
+			</form>
+
+			</div>
+
+			<div>
+				@if(userManager.GetUsersInRoleAsync("admin").Result.Count() >= 2)
+				{
+					<form asp-controller="Admin" asp-action="RemoveRole" method="post">
+						<select name="role">
+							<option value""> --Choose a role to REMOVE--</option>
+							@foreach (var role in roleManager.Roles)
+							{
+
+								<option value="@role.Name">@role.Name</option>
+							}
+						</select>
+						<input type="hidden" name="userId" value="@Model.UserId" />
+						<button type="submit">Save</button>
+					</form>
+				}
+
+			</div>
 		</div>
 	</div>
 	@*<a asp-action="index" asp-controller="account" >details</a>*@

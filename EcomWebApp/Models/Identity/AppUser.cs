@@ -19,6 +19,7 @@ public class AppUser : IdentityUser
     {
         return new UserProfileCardViewModel
         {
+            UserId = appUser.Id,
             FirstName = appUser.FirstName,
             LastName = appUser.LastName,
             Email = appUser.Email!,

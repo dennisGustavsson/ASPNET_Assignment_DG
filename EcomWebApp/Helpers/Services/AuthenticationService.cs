@@ -39,7 +39,8 @@ public class AuthenticationService
             {
                 await _roleManager.CreateAsync(new IdentityRole("admin"));
                 await _roleManager.CreateAsync(new IdentityRole("user"));
-            }
+				await _roleManager.CreateAsync(new IdentityRole("productmanager"));
+			}
 
             if (!await _userManager.Users.AnyAsync())
                 roleName = "admin";
