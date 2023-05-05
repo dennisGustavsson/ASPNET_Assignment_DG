@@ -2,59 +2,75 @@
 
 
 <div class="user-list-item">
-	<div class="listviewrow">
+	
 		@*<img src="@Model.HeroImageUrl" alt="placeholder" />*@
-		<div class="fullName">@Model.FirstName @Model.LastName</div>
-		<div class="email">$@Model.Email</div>
+	<div class="listviewrow">
+		<div class="fullName"><div>Full Name: </div>@Model.FirstName @Model.LastName</div>
+		<div class="email"><div>Email Address: </div>@Model.Email</div>
 		<div class="address">
 			@foreach (var address in Model.Addresses)
 			{
-			<h5>@address.Address.StreetName</h5>
-			<h5>@address.Address.PostalCode</h5>
-			<h5>@address.Address.City</h5>
+				<div>@address.Address.StreetName</div>
+				<div>@address.Address.PostalCode</div>
+				<div>@address.Address.City</div>
+			}
+		</div>
+		<div class="roles">
+			<ul>
+				@foreach (var role in Model.Roles)
+				{
+					<li class="roleName">@role</li>
+				}
+			</ul>
 
 			
-			}
-			@foreach (var role in Model.Roles)
-			{
-				<h5>@role</h5>
-			}
-			<div>
-			<form asp-controller="Admin" asp-action="AddRole" method="post">
-				<select name="role">
-					<option value""> --Choose a role to ADD--</option>
-					@foreach(var role in roleManager.Roles)
-					{
-						
-						<option value="@role.Name">@role.Name</option>
-					}
-				</select>
-				<input type="hidden" name="userId" value="@Model.UserId"/>
-				<button type="submit">Save</button>
-			</form>
+			<div class="roleOptions">
+				<div>
+					<form asp-controller="Admin" asp-action="AddRole" method="post">
+						<div class="addRoles">
+							<select name="role">
+								<option value""> --Choose a role to ADD--</option>
+								@foreach (var role in roleManager.Roles)
+								{
 
-			</div>
+									<option value="@role.Name">@role.Name</option>
+								}
+							</select>
+							<input type="hidden" name="userId" value="@Model.UserId" />
+							<button class="btn-outline-white" type="submit">Save</button>
+						</div>
 
-			<div>
-				@if(userManager.GetUsersInRoleAsync("admin").Result.Count() >= 2)
-				{
-					<form asp-controller="Admin" asp-action="RemoveRole" method="post">
-						<select name="role">
-							<option value""> --Choose a role to REMOVE--</option>
-							@foreach (var role in roleManager.Roles)
-							{
-
-								<option value="@role.Name">@role.Name</option>
-							}
-						</select>
-						<input type="hidden" name="userId" value="@Model.UserId" />
-						<button type="submit">Save</button>
 					</form>
-				}
 
+				</div>
+
+				<div>
+					@if (userManager.GetUsersInRoleAsync("admin").Result.Count() >= 2)
+					{
+						<form asp-controller="Admin" asp-action="RemoveRole" method="post">
+							<div class="removeRoles">
+								<select name="role">
+									<option value""> --Choose a role to REMOVE--</option>
+									@foreach (var role in roleManager.Roles)
+									{
+
+										<option value="@role.Name">@role.Name</option>
+									}
+								</select>
+								<input type="hidden" name="userId" value="@Model.UserId" />
+								<button class="btn-outline-white" type="submit">Save</button>
+							</div>
+
+						</form>
+					}
+
+				</div>
 			</div>
 		</div>
+		
 	</div>
+	
+	
 	@*<a asp-action="index" asp-controller="account" >details</a>*@
 
 </div>
