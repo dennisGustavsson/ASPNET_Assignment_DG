@@ -1,20 +1,4 @@
-/* {
 
-    .container {
-
-        .title {
-            font-size: 26px;
-            color: black;
-            text-align: center;
-            font-family: $font-poppins;
-            margin-bottom: 1rem;
-        }
-
-        .user-list-item {
-            display: flex;
-        }
-    }
-}*/
 
 .users-manager-list {
     font-family: $font-poppins;
@@ -36,17 +20,18 @@
 
         .user-list-item {
             border-bottom: 1px solid $color-dark-4;
+            display:flex;
+            justify-content:center;
 
-
-            @include lg {
+/*            @include lg {
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
-            }
+            }*/
 
             .listviewrow {
                 display: flex;
-                justify-content: center;
+                justify-content: space-around;
                 align-items: center;
                 padding-block: 1rem;
 
@@ -55,55 +40,60 @@
                 }
 
                 .fullName {
-                    font-weight: $font-weight-semibold;
+                    font-weight: $font-weight-regular;
                     width: 12rem;
                     padding-inline: 1rem;
+                    flex: 1;
                 }
 
                 .email {
                     font-weight: $font-weight-semibold;
                     width: 12rem;
                     padding-inline: 1rem;
+                    flex: 1;
                 }
 
                 .address {
                     font-weight: $font-weight-bold;
                     width: 120px;
                     padding-inline: 1rem;
+                    flex: 1;
+                    min-width: 100px;
                 }
 
 
                 .roles {
-                    display:flex;
-
+                    display: flex;
+                    flex: 1;
 
                     ul {
-                       list-style: none;
+                        list-style: none;
+                        min-width: 90px;
                     }
-                    .roleName {
 
+                    .roleName {
                     }
 
                     .roleOptions {
-                        display:flex;
+                        display: flex;
+                        flex: 1;
 
-                    .addRoles, .removeRoles {
-                        display:flex;
-                        flex-direction:column;
-                        font-size: 12px;
-                        width: 100%;
-                        padding: 1rem;
+                        .addRoles, .removeRoles {
+                            display: flex;
+                            flex-direction: column;
+                            font-size: 12px;
+                            width: 100%;
+                            padding: 1rem;
 
-                        select{
-                            max-width: 200px;
-                            height: 40px;
-                            margin-bottom: 10px;
+                            select {
+                                max-width: 200px;
+                                height: 40px;
+                                margin-bottom: 10px;
+                            }
                         }
-                    }
                     }
                 }
             }
         }
     }
 }
-

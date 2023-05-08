@@ -1414,23 +1414,6 @@ footer .container {
   }
 }
 
-/* {
-
-    .container {
-
-        .title {
-            font-size: 26px;
-            color: black;
-            text-align: center;
-            font-family: $font-poppins;
-            margin-bottom: 1rem;
-        }
-
-        .user-list-item {
-            display: flex;
-        }
-    }
-}*/
 .users-manager-list {
   font-family: "Poppins", sans-serif;
 }
@@ -1447,17 +1430,17 @@ footer .container {
 }
 .users-manager-list .container .user-list-item {
   border-bottom: 1px solid #AEAEAE;
-}
-@media (min-width: 992px) {
-  .users-manager-list .container .user-list-item {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: center;
+  /*            @include lg {
+                  display: flex;
+                  justify-content: flex-start;
+                  align-items: center;
+              }*/
 }
 .users-manager-list .container .user-list-item .listviewrow {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   padding-block: 1rem;
 }
@@ -1465,28 +1448,35 @@ footer .container {
   height: 70px;
 }
 .users-manager-list .container .user-list-item .listviewrow .fullName {
-  font-weight: 600;
+  font-weight: 400;
   width: 12rem;
   padding-inline: 1rem;
+  flex: 1;
 }
 .users-manager-list .container .user-list-item .listviewrow .email {
   font-weight: 600;
   width: 12rem;
   padding-inline: 1rem;
+  flex: 1;
 }
 .users-manager-list .container .user-list-item .listviewrow .address {
   font-weight: 700;
   width: 120px;
   padding-inline: 1rem;
+  flex: 1;
+  min-width: 100px;
 }
 .users-manager-list .container .user-list-item .listviewrow .roles {
   display: flex;
+  flex: 1;
 }
 .users-manager-list .container .user-list-item .listviewrow .roles ul {
   list-style: none;
+  min-width: 90px;
 }
 .users-manager-list .container .user-list-item .listviewrow .roles .roleOptions {
   display: flex;
+  flex: 1;
 }
 .users-manager-list .container .user-list-item .listviewrow .roles .roleOptions .addRoles, .users-manager-list .container .user-list-item .listviewrow .roles .roleOptions .removeRoles {
   display: flex;
