@@ -22,8 +22,11 @@ public class ProductRegistrationViewModel
     [Display(Name = "Price")]
     public decimal Price { get; set; }
 
-    [Required(ErrorMessage = "A image url is required")]
-    [Display(Name = "Hero Image URL")]
+	[Display(Name = "Tags")]
+	public List<string> Tags { get; set; } = new List<string>();
+
+	/*[Required(ErrorMessage = "A image url is required")]*/
+	[Display(Name = "Hero Image URL")]
     public string? HeroImageUrl { get; set; }
 
     [Display(Name = "Extra Image URL")]

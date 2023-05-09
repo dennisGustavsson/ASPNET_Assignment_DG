@@ -7,7 +7,9 @@
 <section class="product-manager">
 	<div class="container">
 		<div class="title">Add a new product</div>
+
 		<a asp-controller="productsmanager" asp-action="createtags">Create Tags</a>
+		<a asp-controller="productsmanager" asp-action="createcategory">Create Category</a>
 
 		<form method="post" novalidate>
 			<div asp-validation-summary="ModelOnly" class="error"></div>
@@ -25,9 +27,22 @@
 
 			</div>
 @*			<div class="product-category form-group">
-				<label asp-for="Category"></label>
-				<input asp-for="Category" />
-				<span asp-validation-for="Category" class="error"></span>
+				<label asp-for="ProductCategoryId"></label>
+				<input asp-for="ProductCategoryId" />
+				<span asp-validation-for="ProductCategoryId" class="error"></span>
+			</div>*@
+
+@*			<div class="category">
+				<select name="chooseCategory">
+					<option value""> --Choose a Category--</option>
+					@foreach (var category in Categories)
+					{
+
+						<option value="@category.Name">@category.Name</option>
+					}
+				</select>
+				<input type="hidden" name="productCategoryId" value="@Model.ProductCategoryId" />
+				<button class="btn-outline-white" type="submit">Save</button>
 			</div>*@
 
 			<div class="product-description form-group">
