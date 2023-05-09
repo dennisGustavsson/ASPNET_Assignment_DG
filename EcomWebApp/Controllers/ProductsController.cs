@@ -14,14 +14,14 @@ namespace EcomWebApp.Controllers
             _productService = productService;
         }
 
-        public async Task<IActionResult> Index()
+/*        public async Task<IActionResult> Index()
         {
             var products = await _productService.GetAllAsync();
 
             return View(products);
-        }
+        }*/
 
-        public async Task<IActionResult> Details(Guid id)
+/*        public async Task<IActionResult> Details(Guid id)
         {
             var product = await _productService.GetAsync(id);
             if(product == null)
@@ -30,6 +30,6 @@ namespace EcomWebApp.Controllers
             }
 
             return View(product);
-        }
+        }*/
     }
 }

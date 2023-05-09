@@ -7,6 +7,7 @@
 <section class="product-manager">
 	<div class="container">
 		<div class="title">Add a new product</div>
+		<a asp-controller="productsmanager" asp-action="createtags">Create Tags</a>
 
 		<form method="post" novalidate>
 			<div asp-validation-summary="ModelOnly" class="error"></div>
@@ -23,11 +24,11 @@
 				<span asp-validation-for="Price" class="error"></span>
 
 			</div>
-			<div class="product-category form-group">
+@*			<div class="product-category form-group">
 				<label asp-for="Category"></label>
 				<input asp-for="Category" />
 				<span asp-validation-for="Category" class="error"></span>
-			</div>
+			</div>*@
 
 			<div class="product-description form-group">
 				<label asp-for="Description"></label>

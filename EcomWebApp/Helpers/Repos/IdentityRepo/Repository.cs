@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System.Linq.Expressions;
 
-namespace EcomWebApp.Helpers.Repos;
+namespace EcomWebApp.Helpers.Repos.IdentityRepo;
 
 public abstract class Repository<TEntity> where TEntity : class
 {
@@ -25,7 +25,7 @@ public abstract class Repository<TEntity> where TEntity : class
     public virtual async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> expression)
     {
         var entity = await _identityContext.Set<TEntity>().FirstOrDefaultAsync(expression);
-        if(entity != null)
+        if (entity != null)
         {
             return entity;
         }
@@ -60,7 +60,8 @@ public abstract class Repository<TEntity> where TEntity : class
             _identityContext.Set<TEntity>().Remove(entity);
             await _identityContext.SaveChangesAsync();
             return true;
-        } catch {  }
+        }
+        catch { }
         return false;
     }
 }

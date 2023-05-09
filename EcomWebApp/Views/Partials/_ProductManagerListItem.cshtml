@@ -1,11 +1,11 @@
-﻿@model ProductModel
+﻿@model Product
 
 <div class="product-list-item">
 	<div class="listviewrow">
 		<img src="@Model.HeroImageUrl" alt="placeholder" />
 		<div class="name">@Model.Name</div>
 		<div class="price">$@Model.Price.ToString("F2")</div>
-		<div class="category">@Model.Category</div>
+		<div class="category">@Model.ProductCategory</div>
 	</div>
 	<a asp-action="details" asp-controller="products" asp-route-id="@Model.Id">details</a>
 	<div class="description">

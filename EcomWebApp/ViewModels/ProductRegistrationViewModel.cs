@@ -16,7 +16,7 @@ public class ProductRegistrationViewModel
 
     [Required(ErrorMessage = "A category is required")]
     [Display(Name = "Product category")]
-    public string Category { get; set; } = null!;
+    public int ProductCategoryId { get; set; }
 
     [Required(ErrorMessage = "A price is required")]
     [Display(Name = "Price")]
@@ -24,7 +24,7 @@ public class ProductRegistrationViewModel
 
     [Required(ErrorMessage = "A image url is required")]
     [Display(Name = "Hero Image URL")]
-    public string HeroImageUrl { get; set; } = null!;
+    public string? HeroImageUrl { get; set; }
 
     [Display(Name = "Extra Image URL")]
     public string? ExtraImageUrl { get; set; }
@@ -35,7 +35,7 @@ public class ProductRegistrationViewModel
         {
             Name = productRegistrationViewModel.Name,
             Description = productRegistrationViewModel.Description,
-            Category = productRegistrationViewModel.Category,
+            ProductCategoryId = productRegistrationViewModel.ProductCategoryId,
             Price = productRegistrationViewModel.Price,
             HeroImageUrl = productRegistrationViewModel.HeroImageUrl,
             ExtraImageUrl = productRegistrationViewModel.ExtraImageUrl,

@@ -1,9 +1,10 @@
 using EcomWebApp.Contexts;
 using EcomWebApp.Helpers.Services;
 using Microsoft.EntityFrameworkCore;
-using EcomWebApp.Helpers.Repos;
 using Microsoft.AspNetCore.Identity;
 using EcomWebApp.Models.Identity;
+using EcomWebApp.Helpers.Repos.IdentityRepo;
+using EcomWebApp.Helpers.Repos.ProductRepo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,16 +13,25 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ShowcaseService>(); //new ShowcaseService()
-builder.Services.AddDbContext<ProductsContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("MainDbSql")));
-builder.Services.AddDbContext<IdentityContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("MainDbSql")));
-builder.Services.AddDbContext<ContactFormContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("ContactFormSql")));
+//builder.Services.AddDbContext<ProductsContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("MainDb")));
+builder.Services.AddDbContext<IdentityContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Identity")));
+builder.Services.AddDbContext<ContactFormContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("MainDb")));
+builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("MainDb")));
+
+//Services
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<ContactFormService>();
 builder.Services.AddScoped<AuthenticationService>();
-builder.Services.AddScoped<AddressRepository>();
-builder.Services.AddScoped<UserAddressRepository>();
 builder.Services.AddScoped<AddressService>();
 builder.Services.AddScoped<UsersService>();
+builder.Services.AddScoped<TagService>();
+//Repos
+builder.Services.AddScoped<AddressRepository>();
+builder.Services.AddScoped<UserAddressRepository>();
+builder.Services.AddScoped<ProductCategoryRepo>();
+builder.Services.AddScoped<ProductRepo>();
+builder.Services.AddScoped<ProductTagRepo>();
+builder.Services.AddScoped<TagRepo>();
 
 builder.Services.AddIdentity<AppUser, IdentityRole>( x =>
 {

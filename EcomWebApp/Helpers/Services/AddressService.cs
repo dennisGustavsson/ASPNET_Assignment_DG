@@ -1,4 +1,4 @@
-﻿using EcomWebApp.Helpers.Repos;
+﻿using EcomWebApp.Helpers.Repos.IdentityRepo;
 using EcomWebApp.Models.Entities;
 using EcomWebApp.Models.Identity;
 

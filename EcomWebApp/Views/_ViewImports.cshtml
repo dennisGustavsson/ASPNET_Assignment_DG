@@ -2,11 +2,12 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using EcomWebApp.Helpers.Services
 @using EcomWebApp.Models
+@using EcomWebApp.Models.Dtos
 @using EcomWebApp.Models.Identity;
 @using EcomWebApp.ViewModels
 @using Microsoft.AspNetCore.Identity;
 @inject ProductService productService
-@inject ContactFormService contacFormService
+@*@inject ContactFormService contacFormService*@
 @inject SignInManager<AppUser> signInManager
 @inject UserManager<AppUser> userManager
 @inject RoleManager<IdentityRole> roleManager
