@@ -29,7 +29,6 @@ public class ProductCategoryService
 	public async Task<ProductCategory> CreateCategoryAsync(ProductCategoryViewModel model)
 	{
 
-
 		var result = await _categoryRepo.AddAsync(new ProductCategoryEntity { CategoryName = model.CategoryName });
 		return result;
 
@@ -41,4 +40,23 @@ public class ProductCategoryService
 		return result;
 
 	}
+	public async Task<IEnumerable<ProductCategory>> GetAllAsync()
+	{
+		var categories = new List<ProductCategory>();
+		var result = await _categoryRepo.GetAllAsync();
+		foreach (var category in result)
+		{
+			categories.Add(category);
+		}
+		return categories;
+
+	}
+
+    public async Task<ProductCategory> GetAsync(int id)
+    {
+        var item = await _categoryRepo.GetAsync(x => x.Id == id);
+
+        return item;
+
+    }
 }

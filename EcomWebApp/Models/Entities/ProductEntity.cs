@@ -8,7 +8,7 @@ namespace EcomWebApp.Models.Entities;
 public class ProductEntity
 {
     [Key]
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public int Id { get; set; } 
     public string Name { get; set; } = null!;
 
     public string? Description { get; set; }

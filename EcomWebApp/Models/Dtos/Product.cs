@@ -3,7 +3,7 @@
 public class Product
 {
 
-    public Guid Id { get; set; }
+    public int Id { get; set; }
     public string Name { get; set; } = null!;
 
     public ProductCategory ProductCategory { get; set; } = null!;
@@ -13,4 +13,5 @@ public class Product
 
     public string? HeroImageUrl { get; set; }
     public string? ExtraImageUrl { get; set; }
+    public IEnumerable<string>? Tags { get; set; }
 }

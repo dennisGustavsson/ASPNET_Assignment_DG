@@ -15,4 +15,6 @@ public class DataContext : DbContext
 
 	public DbSet<TagEntity> Tags { get; set; }
 	public DbSet<ProductTagEntity> ProductTags { get; set; }
+
+
 }

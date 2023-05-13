@@ -15,12 +15,11 @@ namespace EcomWebApp.Helpers.Repos.ProductRepo
 
 		public virtual async Task<TEntity> AddAsync(TEntity entity)
 		{
-			try
-			{
+
 				_context.Set<TEntity>().Add(entity);
 				await _context.SaveChangesAsync();
 				return entity;
-			} catch { return null!; }
+
 		}
 
 
@@ -34,7 +33,8 @@ namespace EcomWebApp.Helpers.Repos.ProductRepo
 			return null!;
 		}
 
-		public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
+
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
 		{
 			try
 			{
@@ -49,7 +49,7 @@ namespace EcomWebApp.Helpers.Repos.ProductRepo
 		{
 			try
 			{
-				return await _context.Set<TEntity>().Where(expression).ToListAsync();
+			return await _context.Set<TEntity>().Where(expression).ToListAsync();
 			} catch { return null!; }
 
 		}

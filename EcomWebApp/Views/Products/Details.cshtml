@@ -1,11 +1,18 @@
-﻿@model Product
+﻿@model ProductDetailsViewModel
 
 <section class="productDetails">
 
     <div class="container">
         <div class="img-container">
             <div class="hero-img">
-                <img src="@Model.HeroImageUrl" />
+                @if(Model.Product.HeroImageUrl != null)
+                {
+                    <img src="@Model.Product.HeroImageUrl" />
+
+                } else
+                {
+                    <img src="/images/placeholders/501x430.svg"/>
+                }
 
             </div>
             <div class="extras-img">
@@ -19,11 +26,11 @@
         <div class="details-container">
             <div class="title">
                 <h2>
-                    @Model.Name
+                    @Model.Product.Name
                 </h2>
             </div>
             <div class="ingress">
-                @Model.Description
+                @Model.Product.Description
             </div>
 
             <div class="rating">
@@ -38,7 +45,7 @@
                 </span>
             </div>
             <div class="price">
-                <h3>$@Model.Price.ToString("F2")</h3>
+                <h3>$@Model.Product.Price.ToString("F2")</h3>
             </div>
 
             <div class="add-to-cart">
@@ -69,8 +76,18 @@
                 <button class="btn-outline-white">Add to wishlist</button>
             </div>
             <div class="categories">
-                <h3>Category:</h3>
-                <span>Shoes,</span>
+                <h3>Category</h3>
+                <div>@Model.Product.ProductCategory.CategoryName</div>
+                <div>
+                    @if(Model.Product.Tags != null)
+                    {
+                        @foreach (var tag in Model.Product.Tags)
+                        {
+                            <span>@tag</span>
+                        }
+                    }
+
+                </div>
             </div>
 
 
