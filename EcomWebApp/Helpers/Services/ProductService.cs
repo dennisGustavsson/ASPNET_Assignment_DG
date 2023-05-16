@@ -114,4 +114,18 @@ public class ProductService
 		};
 		return products;
 	}
+
+    public async Task<IEnumerable<Product>> GetAllByTagsAsync(string tagName, int count)
+    {
+        var products = new List<Product>();
+        var items = await _context.Products.Where(p => p.Tags.Any(p => p.Tag.TagName == tagName))
+			.Take(count)
+			.ToListAsync();
+        foreach (var item in items)
+        {
+            Product product = item;
+            products.Add(product);
+        };
+        return products;
+    }
 }

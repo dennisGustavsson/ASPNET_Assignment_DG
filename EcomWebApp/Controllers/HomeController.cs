@@ -21,15 +21,28 @@ public class HomeController : Controller
     {
         ViewData["Title"] = "Home";
 
+
+        #region get products from database 
+
         //Get Featured
         var featured = await _productService.GetAllByTagsAsync("Featured");
         var featuredGridItems = featured.Select(product => new GridItemViewModel
-        { Id = product.Id.ToString(),Title = product.Name,Price = product.Price,ImageUrl = product.HeroImageUrl} );
+        { Id = product.Id,Title = product.Name,Price = product.Price,ImageUrl = product.HeroImageUrl} );
 
         // Get Categories
         var categories = await _categoryService.GetAllCategoriesAsync();
 
+        //Get Up for sale
+        var onSale = await _productService.GetAllByTagsAsync("On Sale", 2);
+        var onsaleGridItems = onSale.Select(product => new GridItemViewModel
+        { Id = product.Id, Title = product.Name, Price = product.Price, ImageUrl = product.HeroImageUrl });
 
+        //Get Top Selling (Popular)
+        var popular = await _productService.GetAllByTagsAsync("On Sale", 5);
+        var popularGridItems = popular.Select(product => new GridItemViewModel
+        { Id = product.Id, Title = product.Name, Price = product.Price, ImageUrl = product.HeroImageUrl });
+
+        #endregion
 
         var viewModel = new HomeIndexViewModel
         {
@@ -41,11 +54,7 @@ public class HomeController : Controller
             },
             UpForSale = new UpForSaleViewModel
             {
-                GridItems = new List<GridItemViewModel>
-                    {
-                        new GridItemViewModel {Id = "9", Title = "A product", Price = 40, ImageUrl = "images/placeholders/369x310.svg"},
-                        new GridItemViewModel {Id = "10", Title = "A product", Price = 40, ImageUrl = "images/placeholders/369x310.svg"},
-                    },
+                GridItems = onsaleGridItems,
                 UpForSale = new UpForSaleModel
                 {
                     RedTitle = "UP FOR SALE",
@@ -58,16 +67,7 @@ public class HomeController : Controller
             TopSales = new TopSellingViewModel
             {
                 Title = "Top Selling Products This Week",
-                GridItems = new List<GridItemViewModel>
-                    {
-                        new GridItemViewModel {Id = "11", Title = "A cool product", Price = 40, ImageUrl = "images/placeholders/270x295.svg"},
-                        new GridItemViewModel {Id = "12", Title = "A product", Price = 40, ImageUrl = "images/placeholders/270x295.svg"},
-                        new GridItemViewModel {Id = "13", Title = "A product", Price = 40, ImageUrl = "images/placeholders/270x295.svg"},
-                        new GridItemViewModel {Id = "14", Title = "Pants", Price = 40, ImageUrl = "images/placeholders/270x295.svg"},
-                        new GridItemViewModel {Id = "15", Title = "IPhone", Price = 40, ImageUrl = "images/placeholders/270x295.svg"},
-                        new GridItemViewModel {Id = "16", Title = "A product", Price = 40, ImageUrl = "images/placeholders/270x295.svg"},
-                        new GridItemViewModel {Id = "17", Title = "A product", Price = 40, ImageUrl = "images/placeholders/270x295.svg"}
-                    }
+                GridItems = popularGridItems,
             }
 
         };

@@ -27,7 +27,7 @@ namespace EcomWebApp.Controllers
             var products = await _productService.GetAllByCategoryAsync(category);
 
             var gridItems = products.Select(product => new GridItemViewModel
-            { Id = product.Id.ToString(), Title = product.Name, Price = product.Price, ImageUrl = product.HeroImageUrl });
+            { Id = product.Id, Title = product.Name, Price = product.Price, ImageUrl = product.HeroImageUrl });
             GridCollectionViewModel viewModel = new()
             {
                 Title = "All Products",
