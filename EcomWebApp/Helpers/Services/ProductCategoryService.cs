@@ -51,6 +51,17 @@ public class ProductCategoryService
 		return categories;
 
 	}
+    public async Task<IEnumerable<string>> GetAllCategoriesAsync()
+    {
+        var categories = new List<string>();
+        var result = await _categoryRepo.GetAllAsync();
+        foreach (var category in result)
+        {
+            categories.Add(category.CategoryName);
+        }
+        return categories;
+
+    }
 
     public async Task<ProductCategory> GetAsync(int id)
     {

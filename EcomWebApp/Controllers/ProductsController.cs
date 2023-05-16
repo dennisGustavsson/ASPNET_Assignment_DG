@@ -1,11 +1,9 @@
 ﻿using EcomWebApp.Contexts;
 using EcomWebApp.Helpers.Services;
 using EcomWebApp.Models.Dtos;
-using EcomWebApp.Models.Entities;
 using EcomWebApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace EcomWebApp.Controllers
 {
@@ -14,29 +12,33 @@ namespace EcomWebApp.Controllers
 
         private readonly ProductService _productService;
         private readonly ProductCategoryService _categoryService;
-        private readonly TagService _tagService;
-        private readonly ProductTagService _productTagService;
         private readonly DataContext _context;
 
-		public ProductsController(ProductService productService, ProductCategoryService categoryService, TagService tagService, ProductTagService productTagService, DataContext context)
+		public ProductsController(ProductService productService, ProductCategoryService categoryService, DataContext context)
 		{
 			_productService = productService;
 			_categoryService = categoryService;
-			_tagService = tagService;
-			_productTagService = productTagService;
 			_context = context;
 		}
 
-		public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index(string? category)
         {
-            var products = await _productService.GetAllAsync();
 
-            return View(products);
+            var products = await _productService.GetAllByCategoryAsync(category);
+
+            var gridItems = products.Select(product => new GridItemViewModel
+            { Id = product.Id.ToString(), Title = product.Name, Price = product.Price, ImageUrl = product.HeroImageUrl });
+            GridCollectionViewModel viewModel = new()
+            {
+                Title = "All Products",
+                Categories = await _categoryService.GetAllCategoriesAsync(),
+                GridItems = gridItems,
+            };
+            return View(viewModel);
         }
 
         public async Task<IActionResult> Details(int id)
         {
-
             var product = await _productService.GetAsync(id);
 
 			if (product == null)
@@ -44,14 +46,12 @@ namespace EcomWebApp.Controllers
 				RedirectToAction("Index");
 			}
 
-
 			var category = await _categoryService.GetAsync(product!.ProductCategoryId);
             var tags = await _context.ProductTags
                 .Where(pt=>pt.ProductId == id)
-                .Join(_context.Tags, pt => pt.TagId, t => t.Id, (pt,t) => t.TagName).ToListAsync();
-
-
-
+                .Join(_context.Tags, pt => pt.TagId,
+                t => t.Id, 
+                (pt,t) => t.TagName).ToListAsync();
 
 			ProductDetailsViewModel viewModel = new()
 			{
@@ -68,20 +68,8 @@ namespace EcomWebApp.Controllers
                 }
 
             };
-
-
             return View(viewModel);
         }
     }
 }
-
-/*            foreach(var tag in tags)
-            {
-                 await product.Tags.Add(tag);
-            }*/
-
-/*List<string> tags = await _tagService.GetAllAsync*/
-
-/*			Expression<Func<ProductEntity, bool>> condition = p => p.Tags.Any(pt => pt.Tag.TagName == "tagName");
-			var products = await _productService.GetAllAsync(condition);*/
 

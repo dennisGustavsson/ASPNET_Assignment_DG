@@ -80,22 +80,7 @@ public class TagService
 		return tags;
 	}
 
-/*	public async Task<IEnumerable<ProductT>> GetTagsForProductAsync(int productId)
-	{
-		var tags = new List<Tag>();
 
-
-		foreach (var tag in await _tagRepo.GetAllAsync(x => x.))
-		{
-			tags.Add(new SelectListItem
-			{
-				Value = tag.Id.ToString(),
-				Text = tag.TagName,
-				Selected = selectedTags.Contains(tag.Id.ToString())
-			});
-		}
-		return tags;
-	}*/
 
 
 	public async Task<bool> DeleteTagAsync(string tagName)

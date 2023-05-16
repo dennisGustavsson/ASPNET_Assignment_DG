@@ -1,12 +1,9 @@
 ﻿using EcomWebApp.Contexts;
 using EcomWebApp.Helpers.Services;
-using EcomWebApp.Models.Dtos;
-using EcomWebApp.Models.Entities;
 using EcomWebApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace EcomWebApp.Controllers;
 

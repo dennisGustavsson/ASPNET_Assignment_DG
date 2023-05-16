@@ -1,4 +1,5 @@
-﻿using EcomWebApp.Models;
+﻿using EcomWebApp.Helpers.Services;
+using EcomWebApp.Models;
 using EcomWebApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,30 +7,37 @@ namespace EcomWebApp.Controllers;
 
 public class HomeController : Controller
 {
-    public IActionResult Index()
+
+    private readonly ProductService _productService;
+    private readonly ProductCategoryService _categoryService;
+
+    public HomeController(ProductService productService, ProductCategoryService categoryService)
+    {
+        _productService = productService;
+        _categoryService = categoryService;
+    }
+
+    public async Task<IActionResult> Index()
     {
         ViewData["Title"] = "Home";
+
+        //Get Featured
+        var featured = await _productService.GetAllByTagsAsync("Featured");
+        var featuredGridItems = featured.Select(product => new GridItemViewModel
+        { Id = product.Id.ToString(),Title = product.Name,Price = product.Price,ImageUrl = product.HeroImageUrl} );
+
+        // Get Categories
+        var categories = await _categoryService.GetAllCategoriesAsync();
 
 
 
         var viewModel = new HomeIndexViewModel
         {
-            BestCollection = new GridCollectionViewModel
+            Featured = new GridCollectionViewModel
             {
-                Title = "Best Collection",
-                Categories = new List<string> { "All", "Bags", "Dresses", "Decorations", "Essentials", "Interior", "Laptops", "Mobile", "Beauty" },
-
-                GridItems = new List<GridItemViewModel>
-                    {
-                        new GridItemViewModel {Id = "1", Title = "A cool product", Price = 40, ImageUrl = "images/placeholders/270x295.svg"},
-                        new GridItemViewModel {Id = "2", Title = "A product", Price = 40, ImageUrl = "images/placeholders/270x295.svg"},
-                        new GridItemViewModel {Id = "3", Title = "A product", Price = 40, ImageUrl = "images/placeholders/270x295.svg"},
-                        new GridItemViewModel {Id = "4", Title = "A product", Price = 40, ImageUrl = "images/placeholders/270x295.svg"},
-                        new GridItemViewModel {Id = "5", Title = "A product", Price = 40, ImageUrl = "images/placeholders/270x295.svg"},
-                        new GridItemViewModel {Id = "6", Title = "A product", Price = 40, ImageUrl = "images/placeholders/270x295.svg"},
-                        new GridItemViewModel {Id = "7", Title = "A product", Price = 40, ImageUrl = "images/placeholders/270x295.svg"},
-                        new GridItemViewModel {Id = "8", Title = "A product", Price = 40, ImageUrl = "images/placeholders/270x295.svg"},
-                    }
+                Title = "Featured",
+                Categories = categories,
+                GridItems = featuredGridItems,
             },
             UpForSale = new UpForSaleViewModel
             {

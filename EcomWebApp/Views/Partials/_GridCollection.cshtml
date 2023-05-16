@@ -13,10 +13,16 @@
             @if (Model.Categories != null)
             {
                 <ul class="categories">
+                    <li class="category-item">
 
+                    <a asp-controller="products" asp-action="index">All</a>
+                    </li>
                     @foreach (var category in Model.Categories)
                     {
-                        <li class="category-item">@category</li>
+                        <li class="category-item">
+                            <a asp-controller="products" asp-action="index" asp-route-category="@category">@category</a>
+                            
+                            </li>
                     }
 
                 </ul>
