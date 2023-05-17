@@ -37,4 +37,9 @@ public class UsersService
 
 	return usersProfiles;
 	}
+
+	public async Task DeleteUserAsync(AppUser user)
+	{
+		await _userManager.DeleteAsync(user);
+	}
 }

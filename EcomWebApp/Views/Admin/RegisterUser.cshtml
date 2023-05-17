@@ -3,9 +3,6 @@
     ViewData["Title"] = "Register a new account";
 }
 
-
-
-
 <section class="register-form">
     <div class="container">
         <div class="title">@ViewData["Title"]</div>
@@ -16,33 +13,33 @@
 
             <div class="firstname form-group">
                 <label asp-for="FirstName"></label>
-                <input asp-for="FirstName" id="firstName">
-                <span asp-validation-for="FirstName" id="spanErrorFirstName" class="error"></span>
-                <div id="firstName-validation" class=""></div>
+                <input asp-for="FirstName" id="firstname">
+                <span asp-validation-for="FirstName" id="spanErrorName" class="error"></span>
+                <div id="name-validation" class=""></div>
             </div>
             <div class="lastname form-group">
                 <label asp-for="LastName"></label>
-                <input asp-for="LastName" id="lastName">
-                <span asp-validation-for="LastName" id="spanErrorLastName" class="error"></span>
-                <div id="lastName-validation" class=""></div>
+                <input asp-for="LastName" id="lastname">
+                <span asp-validation-for="LastName" id="spanErrorName" class="error"></span>
+                <div id="name-validation" class=""></div>
             </div>
             <div class="streetname form-group">
                 <label asp-for="StreetName"></label>
-                <input asp-for="StreetName" id="street">
-                <span asp-validation-for="StreetName" id="spanErrorStreetName" class="error"></span>
-                <div id="street-validation" class=""></div>
+                <input asp-for="StreetName" id="streetname">
+                <span asp-validation-for="StreetName" id="spanErrorName" class="error"></span>
+                <div id="name-validation" class=""></div>
             </div>
             <div class="postalcode form-group">
                 <label asp-for="PostalCode"></label>
-                <input asp-for="PostalCode" id="postalcode">
-                <span asp-validation-for="PostalCode" id="spanErrorPostalcode" class="error"></span>
-                <div id="postalcode-validation" class=""></div>
+                <input asp-for="PostalCode" id="city">
+                <span asp-validation-for="PostalCode" id="spanErrorName" class="error"></span>
+                <div id="name-validation" class=""></div>
             </div>
             <div class="city form-group">
                 <label asp-for="City"></label>
                 <input asp-for="City" id="city">
-                <span asp-validation-for="City" id="spanErrorCity" class="error"></span>
-                <div id="city-validation" class=""></div>
+                <span asp-validation-for="City" id="spanErrorName" class="error"></span>
+                <div id="name-validation" class=""></div>
             </div>
             <div class="phoneNumber form-group">
                 <label asp-for="PhoneNumber">Phone Number (optional)</label>
@@ -56,26 +53,24 @@
                 <label asp-for="Email"></label>
                 <input asp-for="Email" id="email">
                 <span asp-validation-for="Email" id="spanErrorEmail" class="error"></span>
-                <div id="email-validation" class=""></div>
-
 
             </div>
             <div class="password form-group">
                 <label asp-for="Password"></label>
                 <input asp-for="Password" id="password">
-                <span asp-validation-for="Password" id="spanErrorPassword" class="error"></span>
+                <span asp-validation-for="Password" id="spanErrorEmail" class="error"></span>
 
             </div>
             <div class="confirmpassword form-group">
                 <label asp-for="ConfirmPassword"></label>
-                <input asp-for="ConfirmPassword" id="confirmPassword">
-                <span asp-validation-for="ConfirmPassword" id="spanErrorConfirmPassword" class="error"></span>
+                <input asp-for="ConfirmPassword" id="confirmpassword">
+                <span asp-validation-for="ConfirmPassword" id="spanErrorEmail" class="error"></span>
 
             </div>
             <div class="profileimage form-group">
                 <label asp-for="ProfileImage"></label>
                 <input asp-for="ProfileImage" id="profileimage">
-                <span asp-validation-for="ProfileImage"  class="error"></span>
+                <span asp-validation-for="ProfileImage" id="spanErrorEmail" class="error"></span>
             </div>
 
             <div class="terms form-checkbox-group">
@@ -83,7 +78,7 @@
                     <label asp-for="TermsAndAgreement"></label>
                     <input asp-for="TermsAndAgreement">
                     <span class="checkmark"></span>
-                <span asp-validation-for="TermsAndAgreement" class="error"></span>
+                    <span asp-validation-for="TermsAndAgreement" class="error"></span>
                 </label>
             </div>
             <button id="contactBtn" class="btn-theme" type="submit">Register</button>

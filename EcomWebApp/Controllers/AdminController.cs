@@ -22,15 +22,12 @@ public class AdminController : Controller
 
 	public IActionResult Index()
     {
-
         return View();
     }
 
     public async Task<IActionResult> Users()
     {
-
         var users = await _userService.GetAllAsync();
-
 
         return View(users);
     }
@@ -50,4 +47,20 @@ public class AdminController : Controller
 		await _userManager.RemoveFromRoleAsync(user!, role);
 		return RedirectToAction("Users");
 	}
+
+    
+    public async Task<IActionResult> DeleteUser(Guid id)
+    {
+        var user = await _userManager.FindByIdAsync(id.ToString());
+        if(user != null)
+        {
+            await _userManager.DeleteAsync(user);
+        }
+        return RedirectToAction("users", "admin");
+    }
+
+    public IActionResult RegisterUser()
+    {
+        return View();
+    }
 }

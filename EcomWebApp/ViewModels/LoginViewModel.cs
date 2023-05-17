@@ -7,6 +7,8 @@ namespace EcomWebApp.ViewModels
         [Display(Name = "E-mail")]
         [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "You must enter an email.")]
+        [RegularExpression("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$",
+            ErrorMessage = "Please enter a valid email address.")]
         public string Email { get; set; } = null!;
 
 

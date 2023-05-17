@@ -22,8 +22,6 @@
 					<li class="roleName">@role</li>
 				}
 			</ul>
-
-			
 			<div class="roleOptions">
 				<div>
 					<form asp-controller="Admin" asp-action="AddRole" method="post">
@@ -63,7 +61,7 @@
 
 						</form>
 					}
-
+					<a asp-controller="admin" asp-action="deleteuser" asp-route-id="@Model.UserId">Delete User</a>
 				</div>
 			</div>
 		</div>
