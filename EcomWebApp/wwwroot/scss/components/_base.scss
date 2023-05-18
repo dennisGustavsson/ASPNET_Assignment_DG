@@ -31,3 +31,13 @@ html, body {
     font-size: 12px !important;
     color: $color-theme-1;
 }
+
+.success {
+    border: 1px solid lawngreen !important;
+}
+
+*:disabled {
+    background-color: gray !important;
+    border:none !important;
+    cursor: auto !important;
+}

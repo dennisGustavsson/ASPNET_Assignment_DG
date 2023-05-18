@@ -44,8 +44,8 @@ footerPosition('footer', document.body.scrollHeight, window.innerHeight);
 
 let formElement;
 let nameInput = document.getElementById("name");
-let firstNameInput = document.getElementById("firstName");
-let lastNameInput = document.getElementById("lastName");
+let firstNameInput = document.getElementById("firstname");
+let lastNameInput = document.getElementById("lastname");
 let emailInput = document.getElementById("email");
 let streetNameInput = document.getElementById("street");
 let postalcodeInput = document.getElementById("postalcode");
@@ -53,21 +53,24 @@ let cityInput = document.getElementById("city");
 let passwordInput = document.getElementById("password")
 let passwordConfirmInput = document.getElementById("confirmPassword")
 let messageInput = document.getElementById("message");
-let contactBtn = document.getElementById("contactBtn");
+let submitBtn = document.getElementById("submitBtn");
+try {
+    if (document.getElementById("contactForm")) {
+        formElement = document.getElementById("contactForm");
+        console.log(formElement)
+    }
+    else if (document.getElementById("loginForm")) {
+        formElement = document.getElementById("loginForm")
+        console.log(formElement);
+    }
+    else if (document.getElementById("registerForm")) {
+        formElement = document.getElementById("registerForm")
+        console.log(formElement);
+    }
+} catch { }
 
-if (document.getElementById("contactForm")) {
-    formElement = document.getElementById("contactForm");
-    console.log(formElement)
-}
-else if (document.getElementById("loginForm")) {
-    formElement = document.getElementById("loginForm")
-    console.log(formElement);
-}
-else if (document.getElementById("registerForm")) {
-    formElement = document.getElementById("registerForm")
-    console.log(formElement);
-}
 
+//validation data for each field
 const validations = [
     {
         input: nameInput, regex: /^[A-Za-zÀ-ÖØ-öø-ÿ]+([- ][A-Za-zÀ-ÖØ-öø-ÿ]+)*$/,
@@ -77,14 +80,14 @@ const validations = [
     },
     {
         input: firstNameInput, regex: /^[A-Za-zÀ-ÖØ-öø-ÿ]+([- ][A-Za-zÀ-ÖØ-öø-ÿ]+)*$/,
-        message: "First should only contain letters and spaces, and be at least 2 characters long.",
-        validationDiv: document.getElementById("name"),
+        message: "Firstname should only contain letters and spaces, and be at least 2 characters long.",
+        validationDiv: document.getElementById("firstname"),
         validationSpan: document.getElementById("spanErrorFirstName")
     },
     {
         input: lastNameInput, regex: /^[A-Za-zÀ-ÖØ-öø-ÿ]+([- ][A-Za-zÀ-ÖØ-öø-ÿ]+)*$/,
         message: "Lastname should only contain letters and spaces, and be at least 2 characters long.",
-        validationDiv: document.getElementById("name"),
+        validationDiv: document.getElementById("lastname"),
         validationSpan: document.getElementById("spanErrorLastName")
     },
     {
@@ -96,8 +99,14 @@ const validations = [
     {
         input: passwordInput, regex: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+=[{\]}\\|;:'",<.>/?]).{8,}$/,
         message: "Password needs to have at least 1 capitalized character, a number and a special character, 8 characters long. ",
-        validationDiv: document.getElementById("email"),
+        validationDiv: document.getElementById("password"),
         validationSpan: document.getElementById("spanErrorPassword")
+    },
+    {
+        input: passwordConfirmInput, regex: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+=[{\]}\\|;:'",<.>/?]).{8,}$/,
+        message: "Password needs to have at least 1 capitalized character, a number and a special character, 8 characters long. ",
+        validationDiv: document.getElementById("confirmPassword"),
+        validationSpan: document.getElementById("spanErrorConfirmPassword")
     },
     {
         input: messageInput, regex: /^.{10,}$/,
@@ -112,6 +121,12 @@ const validations = [
         validationSpan: document.getElementById("spanErrorStreetName")
     },
     {
+        input: cityInput, regex: /^[A-Za-zÀ-ÖØ-öø-ÿ]+([- ][A-Za-zÀ-ÖØ-öø-ÿ]+)*$/,
+        message: "City should only contain letters and spaces, and be at least 2 characters long.",
+        validationDiv: document.getElementById("city"),
+        validationSpan: document.getElementById("spanErrorCity")
+    },
+    {
         input: postalcodeInput, regex: /^\d{5}(?:[-\s]\d{4})?$|^[A-Z]{1,2}\d{1,2}\s?\d{1,2}[A-Z]{0,2}$/,
         message: "Postalcode with numbers only",
         validationDiv: document.getElementById("postalcode"),
@@ -124,10 +139,12 @@ validations.forEach(validation => {
         validation.input.addEventListener("input", () => {
             if (validation.regex.test(validation.input.value)) {
                 validation.validationSpan.textContent = "";
-                validation.validationDiv.class = "success";
+                validation.validationDiv.className = "success";
+                submitBtn.disabled = false;
             } else {
+                submitBtn.disabled = true;
                 validation.validationSpan.textContent = validation.message;
-                validation.validationDiv.class = "invalid";
+                validation.validationDiv.className = "invalid";
             }
         });
     } catch { }
@@ -142,6 +159,7 @@ try {
                 validation.validationSpan.textContent = validation.message;
                 validation.validationDiv.class = "invalid";
                 isFormValid = false;
+                
             }
         });
         if (!isFormValid) {

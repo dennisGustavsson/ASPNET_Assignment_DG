@@ -34,6 +34,16 @@ html, body {
   color: #FA3150;
 }
 
+.success {
+  border: 1px solid lawngreen !important;
+}
+
+*:disabled {
+  background-color: gray !important;
+  border: none !important;
+  cursor: auto !important;
+}
+
 .btn-toggle {
   cursor: pointer;
   font-family: "Poppins", sans-serif;

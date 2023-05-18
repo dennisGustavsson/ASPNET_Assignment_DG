@@ -10,15 +10,13 @@
 
             <div class="name form-group">
                 <label asp-for="Name">Your Name*</label>
-                <input asp-for="Name" id="name" required autocomplete="off">
+                <input asp-for="Name" id="name" required autocomplete="off" class="">
                 <span asp-validation-for="Name" id="spanErrorName" class="error"></span>
-                <div id="name-validation" class="success"></div>
             </div>
             <div class="email form-group">
                 <label asp-for="Email">Your Email*</label>
                 <input asp-for="Email" id="email" autocomplete="off">
                 <span asp-validation-for="Email" id="spanErrorEmail" class="error"></span>
-                <div id="email-validation" class=""></div>
             </div>
             <div class="phoneNumber form-group">
                 <label asp-for="PhoneNumber">Phone Number (optional)</label>
@@ -32,7 +30,6 @@
                 <label asp-for="Message">Message*</label>
                 <textarea asp-for="Message" id="message"></textarea>
                 <span asp-validation-for="Message" id="spanErrorMessage" class="error"></span>
-                <div id="message-validation" class=""></div>
             </div>
             <div class="terms form-checkbox-group">
                 <label class="custom-checkbox">
@@ -41,7 +38,7 @@
                     <span class="checkmark"></span>
                 </label>
             </div>
-            <button id="contactBtn" class="btn-theme" type="submit">Submit</button>
+            <button id="submitBtn" class="btn-theme" type="submit" disabled>Submit</button>
         </form>
     </div>
 </section>

@@ -16,33 +16,33 @@
 
             <div class="firstname form-group">
                 <label asp-for="FirstName"></label>
-                <input asp-for="FirstName" id="firstName">
+                <input asp-for="FirstName" id="firstname">
                 <span asp-validation-for="FirstName" id="spanErrorFirstName" class="error"></span>
-                <div id="firstName-validation" class=""></div>
+
             </div>
             <div class="lastname form-group">
                 <label asp-for="LastName"></label>
-                <input asp-for="LastName" id="lastName">
+                <input asp-for="LastName" id="lastname">
                 <span asp-validation-for="LastName" id="spanErrorLastName" class="error"></span>
-                <div id="lastName-validation" class=""></div>
+
             </div>
             <div class="streetname form-group">
                 <label asp-for="StreetName"></label>
                 <input asp-for="StreetName" id="street">
                 <span asp-validation-for="StreetName" id="spanErrorStreetName" class="error"></span>
-                <div id="street-validation" class=""></div>
+
             </div>
             <div class="postalcode form-group">
                 <label asp-for="PostalCode"></label>
                 <input asp-for="PostalCode" id="postalcode">
                 <span asp-validation-for="PostalCode" id="spanErrorPostalcode" class="error"></span>
-                <div id="postalcode-validation" class=""></div>
+
             </div>
             <div class="city form-group">
                 <label asp-for="City"></label>
                 <input asp-for="City" id="city">
                 <span asp-validation-for="City" id="spanErrorCity" class="error"></span>
-                <div id="city-validation" class=""></div>
+
             </div>
             <div class="phoneNumber form-group">
                 <label asp-for="PhoneNumber">Phone Number (optional)</label>
@@ -56,7 +56,7 @@
                 <label asp-for="Email"></label>
                 <input asp-for="Email" id="email">
                 <span asp-validation-for="Email" id="spanErrorEmail" class="error"></span>
-                <div id="email-validation" class=""></div>
+
 
 
             </div>
@@ -86,7 +86,7 @@
                 <span asp-validation-for="TermsAndAgreement" class="error"></span>
                 </label>
             </div>
-            <button id="contactBtn" class="btn-theme" type="submit">Register</button>
+            <button id="submitBtn" class="btn-theme" type="submit" disabled>Register</button>
         </form>
     </div>
 </section>
