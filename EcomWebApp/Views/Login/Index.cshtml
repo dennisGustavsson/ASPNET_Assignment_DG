@@ -14,12 +14,12 @@
                 <label asp-for="Email"></label>
                 <a asp-controller="register" asp-action="index">Register a new account</a>
 
-                <input asp-for="Email" id="email" autocomplete="off">
+                <input asp-for="Email" id="email" autocomplete="off" required>
                 <span asp-validation-for="Email" id="spanErrorEmail" class="error"></span>
             </div>
             <div class="password form-group">
                 <label asp-for="Password"></label>
-                <input asp-for="Password" id="password" autocomplete="off">
+                <input asp-for="Password" id="password" autocomplete="off" required>
                 <span asp-validation-for="Password" id="spanErrorPassword" class="error"></span>
 
             </div>
@@ -32,7 +32,7 @@
                     <span class="checkmark"></span>
                 </label>
             </div>
-            <button id="submitBtn" class="btn-theme" type="submit" disabled>Login</button>
+            <button id="submitButton" class="btn-theme" type="submit">Login</button>
         </form>
     </div>
 </section>

@@ -60,6 +60,11 @@
 				<span asp-validation-for="Description" class="error"></span>
 			</div>
 			<div class="product-image-hero form-group">
+				<label asp-for="Image"></label>
+				<input asp-for="Image" />
+				<span asp-validation-for="Image" class="error"></span>
+				</div>
+@*			<div class="product-image-hero form-group">
 				<label asp-for="HeroImageUrl"></label>
 				<input asp-for="HeroImageUrl" />
 				<span asp-validation-for="HeroImageUrl" class="error"></span>
@@ -68,7 +73,7 @@
 			<div class="product-image form-group">
 				<label asp-for="ExtraImageUrl"></label>
 				<input asp-for="ExtraImageUrl" />
-			</div>
+			</div>*@
 			<button class="btn-theme">Add Product</button>
 		</form>
 	</div>

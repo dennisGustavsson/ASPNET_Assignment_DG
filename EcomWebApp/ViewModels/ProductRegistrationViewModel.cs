@@ -22,24 +22,33 @@ public class ProductRegistrationViewModel
     [Display(Name = "Price")]
     public decimal Price { get; set; }
 
+    [DataType(DataType.Upload)]
+    public IFormFile? Image { get; set; }
 
-	[Display(Name = "Hero Image URL")]
+/*	[Display(Name = "Hero Image URL")]
     public string? HeroImageUrl { get; set; }
 
     [Display(Name = "Extra Image URL")]
-    public string? ExtraImageUrl { get; set; }
+    public string? ExtraImageUrl { get; set; }*/
 
     public static implicit operator ProductEntity(ProductRegistrationViewModel productRegistrationViewModel)
     {
-        return new ProductEntity
+        var entity =  new ProductEntity
         {
             Name = productRegistrationViewModel.Name,
             Description = productRegistrationViewModel.Description,
             ProductCategoryId = productRegistrationViewModel.ProductCategoryId,
             Price = productRegistrationViewModel.Price,
-            HeroImageUrl = productRegistrationViewModel.HeroImageUrl,
-            ExtraImageUrl = productRegistrationViewModel.ExtraImageUrl,
+/*            HeroImageUrl = productRegistrationViewModel.HeroImageUrl,
+            ExtraImageUrl = productRegistrationViewModel.ExtraImageUrl,*/
         };
+
+        if(productRegistrationViewModel.Image != null )
+        {
+            entity.HeroImageUrl = $"{productRegistrationViewModel.Name}_{productRegistrationViewModel.Image?.FileName}";
+        }
+
+        return entity;
 
     }
 }

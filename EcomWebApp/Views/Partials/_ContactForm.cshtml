@@ -28,7 +28,7 @@
             </div>
             <div class="message form-group">
                 <label asp-for="Message">Message*</label>
-                <textarea asp-for="Message" id="message"></textarea>
+                <textarea asp-for="Message" id="message" required></textarea>
                 <span asp-validation-for="Message" id="spanErrorMessage" class="error"></span>
             </div>
             <div class="terms form-checkbox-group">
@@ -38,7 +38,7 @@
                     <span class="checkmark"></span>
                 </label>
             </div>
-            <button id="submitBtn" class="btn-theme" type="submit" disabled>Submit</button>
+            <button id="submitButton" class="btn-theme" type="submit">Submit</button>
         </form>
     </div>
 </section>

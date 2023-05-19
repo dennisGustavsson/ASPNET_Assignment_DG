@@ -25,7 +25,7 @@ public class HomeController : Controller
         #region get products from database 
 
         //Get Featured
-        var featured = await _productService.GetAllByTagsAsync("Featured");
+        var featured = await _productService.GetAllByTagsAsync("Featured", 4);
         var featuredGridItems = featured.Select(product => new GridItemViewModel
         { Id = product.Id,Title = product.Name,Price = product.Price,ImageUrl = product.HeroImageUrl} );
 
@@ -38,7 +38,7 @@ public class HomeController : Controller
         { Id = product.Id, Title = product.Name, Price = product.Price, ImageUrl = product.HeroImageUrl });
 
         //Get Top Selling (Popular)
-        var popular = await _productService.GetAllByTagsAsync("On Sale", 5);
+        var popular = await _productService.GetAllByTagsAsync("Popular", 7);
         var popularGridItems = popular.Select(product => new GridItemViewModel
         { Id = product.Id, Title = product.Name, Price = product.Price, ImageUrl = product.HeroImageUrl });
 
