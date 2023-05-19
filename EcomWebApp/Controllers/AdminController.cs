@@ -1,5 +1,6 @@
 ﻿using EcomWebApp.Helpers.Services;
 using EcomWebApp.Models.Identity;
+using EcomWebApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,15 +13,17 @@ public class AdminController : Controller
     private readonly UsersService _userService;
     private readonly UserManager<AppUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly AuthenticationService _auth;
 
-	public AdminController(UsersService userService, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
-	{
-		_userService = userService;
-		_userManager = userManager;
-		_roleManager = roleManager;
-	}
+    public AdminController(UsersService userService, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, AuthenticationService auth)
+    {
+        _userService = userService;
+        _userManager = userManager;
+        _roleManager = roleManager;
+        _auth = auth;
+    }
 
-	public IActionResult Index()
+    public IActionResult Index()
     {
         return View();
     }
@@ -62,5 +65,27 @@ public class AdminController : Controller
     public IActionResult RegisterUser()
     {
         return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> RegisterUser(UserRegistrationViewModel viewModel)
+    {
+
+        if (ModelState.IsValid)
+        {
+            if (await _auth.UserAlreadyExistAsync(viewModel))
+            {
+                ModelState.AddModelError("", "An account with this email already exists.");
+                return View();
+            }
+
+            if (await _auth.RegisterUserAsync(viewModel))
+                return RedirectToAction("users", "admin");
+
+            return View();
+        }
+
+        ModelState.AddModelError("", "All required fields needs to be filled.");
+        return View(viewModel);
     }
 }

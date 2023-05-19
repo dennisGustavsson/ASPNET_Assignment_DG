@@ -3,9 +3,6 @@
     ViewData["Title"] = "Register a new account";
 }
 
-
-
-
 <section class="register-form">
     <div class="container">
         <div class="title">@ViewData["Title"]</div>
@@ -25,7 +22,7 @@
                 <input asp-for="LastName" id="lastName" required>
                 <span asp-validation-for="LastName" id="spanErrorLastName" class="error"></span>
 
-            </div>
+            </div> 
             <div class="streetname form-group">
                 <label asp-for="StreetName"></label>
                 <input asp-for="StreetName" id="streetName" required>
