@@ -58,25 +58,50 @@ public class ProductsManagerController : Controller
         return View();
     }
 
-
-    [HttpPost]
-    public async Task<IActionResult> Register(ProductRegistrationViewModel viewModel, string[] tags)
-    {
-        if (ModelState.IsValid)
-        {
-            if (await _productService.CreateProductAsync(viewModel))
+	/*	[HttpPost]
+		public async Task<IActionResult> Register(ProductRegistrationViewModel viewModel, string[] tags)
+		{
+			if (ModelState.IsValid)
 			{
-				var product = await _productService.GetAsync(viewModel.Name);
-				await _productService.AddTagsAsync(product, tags);
-                return RedirectToAction("Index", "ProductsManager");
+				if (await _productService.CreateProductAsync(viewModel))
+				{
+					var product = await _productService.GetAsync(viewModel.Name);
+					await _productService.AddTagsAsync(product, tags);
+					return RedirectToAction("Index", "ProductsManager");
+				}
+
+				ModelState.AddModelError("", "Something went wrong, try again.");
 			}
 
-            ModelState.AddModelError("", "Something went wrong, try again.");
-        }
+			ViewBag.Tags = await _tagService.GetAllAsync(tags);
+			return View(viewModel);
+		}*/
 
+	[HttpPost]
+	public async Task<IActionResult> Register(ProductRegistrationViewModel viewModel, string[] tags)
+	{
+		if (ModelState.IsValid)
+		{
+			var product = await _productService.CreateProductAsync(viewModel);
+			if (product != null)
+			{
+				var _product = await _productService.GetAsync(viewModel.Name);
+				await _productService.AddTagsAsync(_product, tags);
+
+				if (viewModel.Image != null)
+					await _productService.UploadImageAsync(product, viewModel.Image);
+
+				return RedirectToAction("Index", "ProductsManager");
+			}
+
+			ModelState.AddModelError("", "Something went wrong, try again.");
+			return View(viewModel);
+		}
+
+		ViewBag.Categories = await _productCategoryService.GetAllAsync();
 		ViewBag.Tags = await _tagService.GetAllAsync(tags);
-        return View(viewModel);
-    }
+		return View(viewModel);
+	}
 
 	public IActionResult CreateTags()
 	{

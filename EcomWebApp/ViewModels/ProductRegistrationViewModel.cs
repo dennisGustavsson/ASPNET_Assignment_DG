@@ -39,13 +39,11 @@ public class ProductRegistrationViewModel
             Description = productRegistrationViewModel.Description,
             ProductCategoryId = productRegistrationViewModel.ProductCategoryId,
             Price = productRegistrationViewModel.Price,
-/*            HeroImageUrl = productRegistrationViewModel.HeroImageUrl,
-            ExtraImageUrl = productRegistrationViewModel.ExtraImageUrl,*/
         };
 
         if(productRegistrationViewModel.Image != null )
         {
-            entity.HeroImageUrl = $"{productRegistrationViewModel.Name}_{productRegistrationViewModel.Image?.FileName}";
+            entity.HeroImageUrl = $"{Guid.NewGuid()}_{productRegistrationViewModel.Image?.FileName}";
         }
 
         return entity;

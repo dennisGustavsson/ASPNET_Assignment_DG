@@ -25,7 +25,6 @@ public class ProductEntity
 
     public static implicit operator Product(ProductEntity entity)
     {
-
         if (entity != null)
         {
             return new Product
@@ -37,7 +36,6 @@ public class ProductEntity
                 Price = entity.Price,
                 HeroImageUrl = entity.HeroImageUrl,
                 ExtraImageUrl = entity.ExtraImageUrl,
-
             };
         }
         return null!;

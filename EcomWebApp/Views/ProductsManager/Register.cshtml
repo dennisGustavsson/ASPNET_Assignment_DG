@@ -1,5 +1,4 @@
 ﻿@model ProductRegistrationViewModel;
-
 @{
 	ViewData["Title"] = "Register new products";
 	//var tags = ViewBag.Tags as List<Tag>;
@@ -13,7 +12,7 @@
 		<a asp-controller="productsmanager" asp-action="createtags">Create Tags</a>
 		<a asp-controller="productsmanager" asp-action="createcategory">Create Category</a>
 
-		<form method="post" novalidate>
+		<form enctype="multipart/form-data" method="post" novalidate>
 			<div asp-validation-summary="ModelOnly" class="error"></div>
 
 			<div class="product-name form-group">
@@ -28,18 +27,16 @@
 				<span asp-validation-for="Price" class="error"></span>
 
 			</div>
-
-
+			
 			<div class="category">
-				<select name="productCategoryId" asp-for="ProductCategoryId" asp-items="@(new SelectList(ViewBag.Categories, "Id", "CategoryName"))">
+@*				<select name="productCategoryId" asp-for="ProductCategoryId" asp-items="@(new SelectList(ViewBag.Categories, "Id", "CategoryName"))">
 					<option value""> --Choose a Category--</option>
-@*					@foreach (var category in ViewBag.Categories)
-					{
-						<option value="@category.Id">@category.CategoryName</option>
-					}*@
-				</select>
 
-				
+				</select>*@
+				<select name="productCategoryId" asp-for="ProductCategoryId" asp-items="@(new SelectList(ViewBag.Categories ?? new List<SelectListItem>(), "Id", "CategoryName"))">
+					<option value""> --Choose a Category--</option>
+				</select>
+				<span asp-validation-for="ProductCategoryId" class="error"></span>
 			</div>
 
 			<div class="tags">
@@ -49,9 +46,7 @@
 						<input type="checkbox" name="Tags" id="tag-@tag.Value-@tag.Text" value="@tag.Value" checked="@tag.Selected" class="form-check-input mx-2" />
 						<label for="tag-@tag.Value-@tag.Text" class="form-check-label">@tag.Text</label>
 					</div>
-
 				}
-
 			</div>
 
 			<div class="product-description form-group">
@@ -63,12 +58,11 @@
 				<label asp-for="Image"></label>
 				<input asp-for="Image" />
 				<span asp-validation-for="Image" class="error"></span>
-				</div>
+			</div>
 @*			<div class="product-image-hero form-group">
 				<label asp-for="HeroImageUrl"></label>
 				<input asp-for="HeroImageUrl" />
 				<span asp-validation-for="HeroImageUrl" class="error"></span>
-
 			</div>
 			<div class="product-image form-group">
 				<label asp-for="ExtraImageUrl"></label>

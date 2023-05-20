@@ -13,33 +13,55 @@ namespace EcomWebApp.Helpers.Services;
 
 public class ProductService
 {
-	private readonly ProductRepo _productRepo;
+
+    #region constructors and private fields
+    private readonly ProductRepo _productRepo;
 	private readonly ProductTagRepo _productTagRepo;
 	private readonly ProductCategoryRepo _productCategoryRepo;
 	private readonly TagService _tagService;
+	private readonly IWebHostEnvironment _webHostEnv;
 	private readonly DataContext _context;
 
-	public ProductService(ProductRepo productRepo, ProductTagRepo productTagRepo, ProductCategoryRepo productCategoryRepo, TagService tagService, DataContext context)
-	{
-		_productRepo = productRepo;
-		_productTagRepo = productTagRepo;
-		_productCategoryRepo = productCategoryRepo;
-		_tagService = tagService;
-		_context = context;
-	}
+    public ProductService(ProductRepo productRepo,
+		ProductTagRepo productTagRepo,
+		ProductCategoryRepo productCategoryRepo,
+		TagService tagService,
+		DataContext context,
+		IWebHostEnvironment webHostEnv)
+    {
+        _productRepo = productRepo;
+        _productTagRepo = productTagRepo;
+        _productCategoryRepo = productCategoryRepo;
+        _tagService = tagService;
+        _context = context;
+        _webHostEnv = webHostEnv;
+    }
+
+	#endregion
 
 
-	public async Task<bool> CreateProductAsync(ProductRegistrationViewModel model)
+	public async Task<Product> CreateProductAsync(ProductRegistrationViewModel model)
 	{
 		var _entity = await _productRepo.GetAsync(x => x.Name == model.Name);
 		if (_entity == null)
 		{
 			_entity = await _productRepo.AddAsync(model);
 			if (_entity != null)
-				return true;
+				return _entity;
 		}
-		return false;
+		return null!;
 	}
+	/*	public async Task<bool> CreateProductAsync(ProductRegistrationViewModel model)
+		{
+			var _entity = await _productRepo.GetAsync(x => x.Name == model.Name);
+			if (_entity == null)
+			{
+				_entity = await _productRepo.AddAsync(model);
+				if (_entity != null)
+					return true;
+			}
+			return false;
+		}*/
 
 	public async Task AddTagsAsync(ProductEntity entity, string[] tags)
 	{
@@ -65,7 +87,14 @@ public class ProductService
         return item;
     }
 
+	public async Task<bool> UploadImageAsync(Product product, IFormFile image)
+	{
 
+            string imagePath = $"{_webHostEnv.WebRootPath}/images/products/{product.HeroImageUrl}";
+            await image.CopyToAsync(new FileStream(imagePath, FileMode.Create));
+			return true;
+
+	}
 
     public async Task<IEnumerable<Product>> GetAllAsync()
 	{

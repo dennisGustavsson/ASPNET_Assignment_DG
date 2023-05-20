@@ -63,58 +63,67 @@ const validationRules = {
 const validations = [];
 
 //input event listener to each field
-inputs.forEach(input => {
-    input.addEventListener('input', () => {
-        validateInput(input);
-        const validationIndex = validations.findIndex(v => v.input.id === input.id);
-        if (validationIndex >= 0) {
-            validations[validationIndex].isValid = validationRules[input.id].regex.test(input.value);
-        } else {
-            validations.push({ input: input, isValid: validationRules[input.id].regex.test(input.value) });
-        }
+try {
+    inputs.forEach(input => {
+        input.addEventListener('input', () => {
+            validateInput(input);
+            const validationIndex = validations.findIndex(v => v.input.id === input.id);
+            if (validationIndex >= 0) {
+                validations[validationIndex].isValid = validationRules[input.id].regex.test(input.value);
+            } else {
+                validations.push({ input: input, isValid: validationRules[input.id].regex.test(input.value) });
+            }
+        });
     });
-});
+} catch { }
+
 
 // when submitting form
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    let isFormValid = true;
-    inputs.forEach(input => {
-        if (!input.checkValidity()) {
-            isFormValid = false;
+try {
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        let isFormValid = true;
+        inputs.forEach(input => {
+            if (!input.checkValidity()) {
+                isFormValid = false;
+            }
+        });
+        if (isFormValid) {
+            form.submit();
+        } else {
+            alert('Please fill out all required fields.');
+
         }
     });
-    if (isFormValid) {
-        form.submit();
-    } else {
-        alert('Please fill out all required fields.');
+} catch { }
 
-    }
-});
 
-function validateInput(input) {
-    const validationRule = validationRules[input.id];
-    if (!validationRule) {
-        return;
-    }
-    if (input.value.trim().length === 0) {
+try {
+    function validateInput(input) {
+        const validationRule = validationRules[input.id];
+        if (!validationRule) {
+            return;
+        }
+        if (input.value.trim().length === 0) {
+            const validationDiv = document.getElementById(input.id);
+            const validationSpan = document.getElementById(`spanError${input.id.charAt(0).toUpperCase() + input.id.slice(1)}`);
+            validationSpan.textContent = "This field is required.";
+            validationDiv.className = 'error';
+            return;
+        }
+        const isValid = validationRule.regex.test(input.value);
         const validationDiv = document.getElementById(input.id);
         const validationSpan = document.getElementById(`spanError${input.id.charAt(0).toUpperCase() + input.id.slice(1)}`);
-        validationSpan.textContent = "This field is required.";
-        validationDiv.className = 'error';
-        return;
+        if (isValid) {
+            validationSpan.textContent = "";
+            validationDiv.className = 'success';
+        } else {
+            validationSpan.textContent = validationRule.message;
+            validationDiv.className = 'error';
+        }
     }
-    const isValid = validationRule.regex.test(input.value);
-    const validationDiv = document.getElementById(input.id);
-    const validationSpan = document.getElementById(`spanError${input.id.charAt(0).toUpperCase() + input.id.slice(1)}`);
-    if (isValid) {
-        validationSpan.textContent = "";
-        validationDiv.className = 'success';
-    } else {
-        validationSpan.textContent = validationRule.message;
-        validationDiv.className = 'error';
-    }
-}
+} catch { }
+
 
 
 
