@@ -10,14 +10,16 @@ public class HomeController : Controller
 
     private readonly ProductService _productService;
     private readonly ProductCategoryService _categoryService;
+    private readonly ContactFormService _contactFormService;
 
-    public HomeController(ProductService productService, ProductCategoryService categoryService)
-    {
-        _productService = productService;
-        _categoryService = categoryService;
-    }
+	public HomeController(ProductService productService, ProductCategoryService categoryService, ContactFormService contactFormService)
+	{
+		_productService = productService;
+		_categoryService = categoryService;
+		_contactFormService = contactFormService;
+	}
 
-    public async Task<IActionResult> Index()
+	public async Task<IActionResult> Index()
     {
         ViewData["Title"] = "Home";
 
@@ -70,9 +72,21 @@ public class HomeController : Controller
                 GridItems = popularGridItems,
             }
 
+
         };
 
 
         return View(viewModel);
     }
+    [HttpPost]
+    public async Task<IActionResult> SubscribeToNewsletter(NewsletterViewModel model)
+    {
+		if (ModelState.IsValid)
+		{
+			await _contactFormService.AddNewsletterEmailAsync(model);
+			return RedirectToAction("Index");
+		}
+		ModelState.AddModelError("", "Message couldnt be posted");
+		return View(model);
+	}
 }

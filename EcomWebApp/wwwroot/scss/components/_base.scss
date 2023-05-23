@@ -35,6 +35,9 @@ html, body {
 .success {
     border: 1px solid lawngreen !important;
 }
+.show-error {
+    color: red;
+}
 
 *:disabled {
     background-color: gray !important;

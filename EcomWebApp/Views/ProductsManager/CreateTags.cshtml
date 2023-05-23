@@ -6,16 +6,17 @@
 		<div class="title">Add a new Tag</div>
 
 		<form method="post" novalidate>
-			<div asp-validation-summary="ModelOnly" class="error"></div>
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-			<div class="product-name form-group">
+			<div class="tagName form-group">
 				<label asp-for="TagName"></label>
-				<input asp-for="TagName" />
-				<span asp-validation-for="TagName" class="error"></span>
+				<input asp-for="TagName" id="tagName" required/>
+				<span asp-validation-for="TagName" id="spanErrorTagName" class="error"></span>
 			</div>
 
 
-			<button class="btn-theme">Add Tag</button>
+			<button class="btn-theme" type="submit">Add Tag</button>
 		</form>
 	</div>
 </section>
+

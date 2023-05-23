@@ -1,4 +1,5 @@
 ﻿using EcomWebApp.Contexts;
+using EcomWebApp.Models.Dtos;
 using EcomWebApp.Models.Entities;
 using EcomWebApp.ViewModels;
 using Microsoft.EntityFrameworkCore;
@@ -35,20 +36,29 @@ public class ContactFormService
             _contactFormContext.Messages.Add(messageEntity);
             await _contactFormContext.SaveChangesAsync();
 
-            /*			ContactFormSenderEntity contactFormSenderEntity = contactFormViewModel;
-                        _contactFormContext.Senders.Add(contactFormSenderEntity);
-                        await _contactFormContext.SaveChangesAsync();
-
-
-                        ContactFormMessageEntity contactFormMessageEntity = contactFormViewModel;
-                        contactFormMessageEntity.SenderId = contactFormSenderEntity.Id;
-
-
-                        _contactFormContext.Messages.Add(contactFormMessageEntity);	
-                        await _contactFormContext.SaveChangesAsync();*/
             return true;
 
         }
         catch { return false; }
     }
+
+    public async Task AddNewsletterEmailAsync(NewsletterViewModel viewModel)
+    {
+		try
+		{
+
+			NewsletterEmailEntity? newletterEmail = await _contactFormContext.NewsletterEmails.FirstOrDefaultAsync(x => x.Email == viewModel.Email);
+
+			if (newletterEmail == null)
+			{
+				newletterEmail = viewModel;
+				_contactFormContext.NewsletterEmails.Add(newletterEmail);
+				await _contactFormContext.SaveChangesAsync();
+
+			}
+
+
+		}
+		catch {  }
+	}
 }

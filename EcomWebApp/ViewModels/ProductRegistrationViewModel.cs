@@ -10,7 +10,6 @@ public class ProductRegistrationViewModel
     [Display(Name = "Product name")]
     public string Name { get; set; } = null!;
 
-
     [Display(Name = "Product description")]
     public string? Description { get; set; }
 
@@ -24,12 +23,6 @@ public class ProductRegistrationViewModel
 
     [DataType(DataType.Upload)]
     public IFormFile? Image { get; set; }
-
-/*	[Display(Name = "Hero Image URL")]
-    public string? HeroImageUrl { get; set; }
-
-    [Display(Name = "Extra Image URL")]
-    public string? ExtraImageUrl { get; set; }*/
 
     public static implicit operator ProductEntity(ProductRegistrationViewModel productRegistrationViewModel)
     {
@@ -45,8 +38,6 @@ public class ProductRegistrationViewModel
         {
             entity.HeroImageUrl = $"{Guid.NewGuid()}_{productRegistrationViewModel.Image?.FileName}";
         }
-
         return entity;
-
     }
 }

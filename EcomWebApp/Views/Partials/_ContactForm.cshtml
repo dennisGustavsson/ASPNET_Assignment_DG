@@ -10,12 +10,12 @@
 
             <div class="name form-group">
                 <label asp-for="Name">Your Name*</label>
-                <input asp-for="Name" id="name" required autocomplete="off" class="">
+                <input asp-for="Name" id="name" required autocomplete="off">
                 <span asp-validation-for="Name" id="spanErrorName" class="error"></span>
             </div>
             <div class="email form-group">
                 <label asp-for="Email">Your Email*</label>
-                <input asp-for="Email" id="email" autocomplete="off">
+                <input asp-for="Email" id="email" autocomplete="off" required>
                 <span asp-validation-for="Email" id="spanErrorEmail" class="error"></span>
             </div>
             <div class="phoneNumber form-group">

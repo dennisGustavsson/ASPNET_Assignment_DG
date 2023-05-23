@@ -12,5 +12,7 @@ namespace EcomWebApp.Contexts
 		public DbSet<ContactFormSenderEntity> Senders { get; set; }
 
 		public DbSet<ContactFormMessageEntity> Messages { get; set; }
+
+		public DbSet<NewsletterEmailEntity> NewsletterEmails { get; set; }
 	}
 }
