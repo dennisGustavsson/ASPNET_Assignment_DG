@@ -31,7 +31,6 @@ public class AdminController : Controller
     public async Task<IActionResult> Users()
     {
         var users = await _userService.GetAllAsync();
-
         return View(users);
     }
 
@@ -51,7 +50,6 @@ public class AdminController : Controller
 		return RedirectToAction("Users");
 	}
 
-    
     public async Task<IActionResult> DeleteUser(Guid id)
     {
         var user = await _userManager.FindByIdAsync(id.ToString());

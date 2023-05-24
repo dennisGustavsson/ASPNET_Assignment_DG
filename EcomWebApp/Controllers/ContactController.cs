@@ -29,7 +29,5 @@ namespace EcomWebApp.Controllers
             }
             return View(contactFormViewModel);
         }
-
-
     }
 }

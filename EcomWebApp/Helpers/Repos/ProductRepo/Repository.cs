@@ -43,8 +43,6 @@ namespace EcomWebApp.Helpers.Repos.ProductRepo
 
 		}
 
-
-		// MAKE ONE OF THESE FOR PRODUCT CATEGORIES
 		public virtual async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> expression)
 		{
 			try

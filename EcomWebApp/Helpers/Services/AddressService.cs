@@ -31,7 +31,6 @@ public class AddressService
 
     public async Task AddAddressAsync(AppUser user, AddressEntity addressEntity)
     {
-        /*await _userAddressRepo.AddAsync(user.Id, addressEntity.Id);*/ //ett sätt
         await _userAddressRepo.AddAsync(new UserAddressEntity
         {
             UserId = user.Id,

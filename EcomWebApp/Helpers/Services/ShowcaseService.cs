@@ -20,7 +20,7 @@ public class ShowcaseService
         new ShowcaseModel()
         {
             Ingress = "SHOP SHOP SHOP!",
-            Title = "Very Exclusive Product",
+            Title = "Very Exclusive Products",
             ImageUrl = "images/placeholders/625x647.svg",
             Button = new LinkButtonModel
             {
@@ -29,8 +29,6 @@ public class ShowcaseService
             }
         }
     };
-
-
 
     public ShowcaseModel GetLatestShowcase()
     {

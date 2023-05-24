@@ -22,9 +22,7 @@ public class ProductCategoryService
 	public async Task<bool> CategoryAlreadyExistAsync(ProductCategoryViewModel model)
 	{
 		return await _context.ProductCategories.AnyAsync(x => x.CategoryName == model.CategoryName);
-
 	}
-
 
 	public async Task<ProductCategory> CreateCategoryAsync(ProductCategoryViewModel model)
 	{
@@ -60,7 +58,6 @@ public class ProductCategoryService
             categories.Add(category.CategoryName);
         }
         return categories;
-
     }
 
     public async Task<ProductCategory> GetAsync(int id)
@@ -68,6 +65,5 @@ public class ProductCategoryService
         var item = await _categoryRepo.GetAsync(x => x.Id == id);
 
         return item;
-
     }
 }

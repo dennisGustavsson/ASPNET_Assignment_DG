@@ -1,6 +1,5 @@
 ﻿using EcomWebApp.Models.Entities;
 using EcomWebApp.Models.Identity;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

@@ -1549,3 +1549,23 @@ footer .container {
   font-family: "Poppins", sans-serif;
   margin-block: 4rem;
 }
+
+.userProfile {
+  margin-inline: auto;
+  padding: 2rem 3rem;
+  max-width: 800px;
+  border: 1px solid #AEAEAE;
+  font-family: "Poppins", sans-serif;
+}
+.userProfile .userName {
+  display: flex;
+  margin-bottom: 1rem;
+}
+.userProfile .userName .title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-inline: 2rem;
+}
+.userProfile .userAddress ul {
+  list-style: none;
+}

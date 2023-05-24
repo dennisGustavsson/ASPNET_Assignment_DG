@@ -20,7 +20,6 @@ public class ContactFormService
     {
         try
         {
-
             ContactFormSenderEntity? senderEntity = await _contactFormContext.Senders.FirstOrDefaultAsync(x => x.Email == contactFormViewModel.Email);
 
             if (senderEntity == null)
@@ -35,9 +34,7 @@ public class ContactFormService
 
             _contactFormContext.Messages.Add(messageEntity);
             await _contactFormContext.SaveChangesAsync();
-
             return true;
-
         }
         catch { return false; }
     }
@@ -46,7 +43,6 @@ public class ContactFormService
     {
 		try
 		{
-
 			NewsletterEmailEntity? newletterEmail = await _contactFormContext.NewsletterEmails.FirstOrDefaultAsync(x => x.Email == viewModel.Email);
 
 			if (newletterEmail == null)
@@ -54,10 +50,7 @@ public class ContactFormService
 				newletterEmail = viewModel;
 				_contactFormContext.NewsletterEmails.Add(newletterEmail);
 				await _contactFormContext.SaveChangesAsync();
-
 			}
-
-
 		}
 		catch {  }
 	}

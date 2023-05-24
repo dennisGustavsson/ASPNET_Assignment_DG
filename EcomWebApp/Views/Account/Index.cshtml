@@ -1,18 +1,30 @@
 ﻿@model UserProfileCardViewModel
 @{
     ViewData["Title"] = User.FindFirst("DisplayName")?.Value;
+    var editText = CultureInfo.CurrentCulture.TextInfo;
 }
 
 <div class="container" style="padding-top: 100px">
    
-    <h3>@Model.FirstName</h3>
-    <h3>@Model.LastName</h3>
-    <h3>@foreach(var adress in Model.Addresses)
-        {
-            <span>@adress.Address.StreetName</span>
-            <span>@adress.Address.PostalCode</span>
-            <span>@adress.Address.City</span>
-          
-        }
-    </h3>
+    <div class="userProfile">
+        <div class="userName">
+            <img src="~/images/placeholders/120x113.svg" />
+
+            <span class="title">@editText.ToTitleCase(Model.FirstName.ToLower()) @editText.ToTitleCase(Model.LastName.ToLower())</span>
+        </div>
+
+        <div class="userAddress">
+            <span>Address:</span>
+            <ul>
+                    @foreach (var adress in Model.Addresses)
+                    {
+                    <li>@editText.ToTitleCase(adress.Address.StreetName.ToLower())</li>
+                        <li>@adress.Address.PostalCode</li>
+                    <li>@editText.ToTitleCase(adress.Address.City.ToLower())</li>
+
+                    }
+            </ul>
+        </div>
+
+    </div>
 </div>

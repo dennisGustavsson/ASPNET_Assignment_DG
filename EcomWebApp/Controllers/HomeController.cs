@@ -23,7 +23,6 @@ public class HomeController : Controller
     {
         ViewData["Title"] = "Home";
 
-
         #region get products from database 
 
         //Get Featured
@@ -72,9 +71,7 @@ public class HomeController : Controller
                 GridItems = popularGridItems,
             }
 
-
         };
-
 
         return View(viewModel);
     }

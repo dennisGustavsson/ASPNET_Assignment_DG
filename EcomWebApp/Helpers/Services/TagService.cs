@@ -21,9 +21,6 @@ public class TagService
 		_context = context;
 	}
 
-
-
-
 	public async Task<bool> TagAlreadyExistAsync(CreateTagsViewModel model)
 	{
 		return await _context.Tags.AnyAsync(x => x.TagName == model.TagName);
@@ -79,9 +76,6 @@ public class TagService
 		}
 		return tags;
 	}
-
-
-
 
 	public async Task<bool> DeleteTagAsync(string tagName)
 	{

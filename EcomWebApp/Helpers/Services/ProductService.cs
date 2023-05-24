@@ -36,7 +36,6 @@ public class ProductService
 
 	#endregion
 
-
 	public async Task<Product> CreateProductAsync(ProductRegistrationViewModel model)
 	{
 		var _entity = await _productRepo.GetAsync(x => x.Name == model.Name);

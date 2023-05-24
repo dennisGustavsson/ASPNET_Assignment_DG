@@ -39,7 +39,6 @@ public abstract class Repository<TEntity> where TEntity : class
     }
 
 
-    // MAKE ONE OF THESE FOR PRODUCT CATEGORIES
     public virtual async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> expression)
     {
         return await _identityContext.Set<TEntity>().Where(expression).ToListAsync();

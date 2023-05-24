@@ -28,10 +28,6 @@ public class AccountController : Controller
         _identityContext = identityContext;
     }
 
-
-
-
-
     public async Task<IActionResult> Index()
     {
 
@@ -61,24 +57,6 @@ public class AccountController : Controller
         };
 
         return View(model);
-        /*        var user = await _userManager.GetUserAsync(User);
-                var model = new UserProfileCardViewModel
-                {
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Addresses = user.Addresses,
-                };
-                var userAddress = _identityContext.AspNetAddresses
-            .Where(ua => ua.I == user.Id)
-            .Select(ua => ua.Address)
-            .FirstOrDefault();
 
-                if (userAddress != null)
-                {
-                    model.Addresses.Add(userAddress);
-                }
-
-
-                return View(model);*/
     }
 }

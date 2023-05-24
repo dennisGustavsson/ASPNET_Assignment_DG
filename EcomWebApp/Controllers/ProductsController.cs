@@ -30,7 +30,7 @@ namespace EcomWebApp.Controllers
             { Id = product.Id, Title = product.Name, Price = product.Price, ImageUrl = product.HeroImageUrl });
             GridCollectionViewModel viewModel = new()
             {
-                Title = "All Products",
+                Title = string.IsNullOrEmpty(category) ? "All Products" : category,
                 Categories = await _categoryService.GetAllCategoriesAsync(),
                 GridItems = gridItems,
             };
