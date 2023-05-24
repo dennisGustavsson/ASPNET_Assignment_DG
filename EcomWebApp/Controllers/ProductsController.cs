@@ -52,9 +52,12 @@ namespace EcomWebApp.Controllers
                 .Join(_context.Tags, pt => pt.TagId,
                 t => t.Id, 
                 (pt,t) => t.TagName).ToListAsync();
+            var relatedProducts = await _productService.GetAllByCategoryAsync(product.ProductCategory.CategoryName, 4);
+            var relatedProductsGridItems = relatedProducts.Select(product => new GridItemViewModel
+            { Id = product.Id, Title = product.Name, Price = product.Price, ImageUrl = product.HeroImageUrl });
 
-			ProductDetailsViewModel viewModel = new()
-			{
+            ProductDetailsViewModel viewModel = new()
+            {
                 Product = new Product()
                 {
                     Id = product.Id,
@@ -65,7 +68,12 @@ namespace EcomWebApp.Controllers
                     Description = product.Description,
                     Price = product.Price,
                     Tags = tags
+                },
+                RelatedProducts = new GridCollectionViewModel
+                {
+                    GridItems = relatedProductsGridItems,
                 }
+
 
             };
             return View(viewModel);

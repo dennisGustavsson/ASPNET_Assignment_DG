@@ -48,6 +48,7 @@ public class ProductsManagerController : Controller
         }
 
         var products = await _productService.GetAllAsync();
+
         return View(products);
     }
 
@@ -58,24 +59,6 @@ public class ProductsManagerController : Controller
         return View();
     }
 
-	/*	[HttpPost]
-		public async Task<IActionResult> Register(ProductRegistrationViewModel viewModel, string[] tags)
-		{
-			if (ModelState.IsValid)
-			{
-				if (await _productService.CreateProductAsync(viewModel))
-				{
-					var product = await _productService.GetAsync(viewModel.Name);
-					await _productService.AddTagsAsync(product, tags);
-					return RedirectToAction("Index", "ProductsManager");
-				}
-
-				ModelState.AddModelError("", "Something went wrong, try again.");
-			}
-
-			ViewBag.Tags = await _tagService.GetAllAsync(tags);
-			return View(viewModel);
-		}*/
 
 	[HttpPost]
 	public async Task<IActionResult> Register(ProductRegistrationViewModel viewModel, string[] tags)

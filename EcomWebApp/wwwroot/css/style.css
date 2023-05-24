@@ -14,7 +14,7 @@ html, body {
   transform: translateX(-100%);
 }
 
-.invalid {
+input.error {
   border: 1px solid #FA3150 !important;
 }
 
@@ -35,7 +35,7 @@ html, body {
 }
 
 .success {
-  border: 1px solid lawngreen !important;
+  border: 1px solid lightgreen !important;
 }
 
 .show-error {
@@ -46,6 +46,14 @@ html, body {
   background-color: gray !important;
   border: none !important;
   cursor: auto !important;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+a:hover {
+  color: #FA3150;
 }
 
 .btn-toggle {
@@ -788,6 +796,7 @@ footer .container {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 40px;
+  justify-items: center;
 }
 @media (min-width: 768px) {
   .top-selling .collection-grid {
@@ -801,7 +810,7 @@ footer .container {
 }
 @media (min-width: 1200px) {
   .top-selling .collection-grid {
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 .top-selling .collection-grid .collection-item .body .title {
@@ -1019,7 +1028,7 @@ footer .container {
 }
 .product-manager-list .container .list-header .title {
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   color: #202020;
 }
 .product-manager-list .container .product-list-item {
@@ -1039,6 +1048,7 @@ footer .container {
 }
 .product-manager-list .container .product-list-item .listviewrow img {
   height: 70px;
+  width: 70px;
 }
 .product-manager-list .container .product-list-item .listviewrow .name {
   font-weight: 600;
@@ -1051,12 +1061,12 @@ footer .container {
   padding-inline: 1rem;
 }
 .product-manager-list .container .product-list-item .listviewrow .category {
-  padding-inline: 1rem;
+  padding-inline: 0.6rem;
   width: 120px;
 }
 .product-manager-list .container .product-list-item .description {
   font-size: 12px;
-  max-width: 600px;
+  max-width: 500px;
   padding: 1rem;
 }
 
@@ -1192,7 +1202,7 @@ footer .container {
 }
 
 .productDetails {
-  padding-block: 4rem;
+  padding-top: 4rem;
 }
 .productDetails .container {
   margin-top: 80px;
@@ -1362,6 +1372,9 @@ footer .container {
   font-size: 16px;
   font-weight: 400;
 }
+.productDetails .container .details-container .categories span {
+  font-weight: 600;
+}
 .productDetails .container .tabs-container {
   margin: 2rem 0 2rem 0;
   grid-area: tabs;
@@ -1427,6 +1440,12 @@ footer .container {
     flex: 1;
   }
 }
+.productDetails .container .relatedproducts .title h3 {
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: #202020;
+}
 
 .users-manager-list {
   font-family: "Poppins", sans-serif;
@@ -1446,17 +1465,25 @@ footer .container {
   border-bottom: 1px solid #AEAEAE;
   display: flex;
   justify-content: center;
-  /*            @include lg {
-                  display: flex;
-                  justify-content: flex-start;
-                  align-items: center;
-              }*/
+}
+@media (min-width: 992px) {
+  .users-manager-list .container .user-list-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 }
 .users-manager-list .container .user-list-item .listviewrow {
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding-block: 1rem;
+  flex-direction: column;
+}
+@media (min-width: 992px) {
+  .users-manager-list .container .user-list-item .listviewrow {
+    flex-direction: row;
+  }
 }
 .users-manager-list .container .user-list-item .listviewrow img {
   height: 70px;
@@ -1482,15 +1509,25 @@ footer .container {
 }
 .users-manager-list .container .user-list-item .listviewrow .roles {
   display: flex;
+  /*flex-direction: column;*/
   flex: 1;
 }
 .users-manager-list .container .user-list-item .listviewrow .roles ul {
   list-style: none;
   min-width: 90px;
 }
+.users-manager-list .container .user-list-item .listviewrow .roles .roleName {
+  font-size: 0.8rem;
+}
 .users-manager-list .container .user-list-item .listviewrow .roles .roleOptions {
   display: flex;
   flex: 1;
+  flex-direction: column;
+}
+@media (min-width: 992px) {
+  .users-manager-list .container .user-list-item .listviewrow .roles .roleOptions {
+    flex-direction: row;
+  }
 }
 .users-manager-list .container .user-list-item .listviewrow .roles .roleOptions .addRoles, .users-manager-list .container .user-list-item .listviewrow .roles .roleOptions .removeRoles {
   display: flex;
@@ -1503,4 +1540,12 @@ footer .container {
   max-width: 200px;
   height: 40px;
   margin-bottom: 10px;
+}
+
+.backoffice .container {
+  text-align: center;
+}
+.backoffice .container h3 {
+  font-family: "Poppins", sans-serif;
+  margin-block: 4rem;
 }

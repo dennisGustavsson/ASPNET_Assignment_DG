@@ -7,7 +7,7 @@
         <form method ="post" novalidate asp-controller="Home" asp-action="SubscribeToNewsletter">
             <input asp-for="Email" placeholder="subscribe mail here..." maxlength="64" id="newsletter" required>
             <button class="btn-theme btn-rounded" type="submit"><i class="fa-sharp fa-solid fa-paper-plane fa-beat"></i></button>
-            <span asp-validation-for="Email" id="spanErrorNewsletter" class="error"></span>
+            <span asp-validation-for="Email" id="spanErrorNewsletter" class="text-danger"></span>
         </form>
     </div>
 </section>

@@ -1,10 +1,9 @@
 ﻿.productDetails {
-    padding-block: 4rem;
+    padding-top: 4rem;
 
     .container {
-        margin-top:80px;
+        margin-top: 80px;
         display: grid;
-        // justify-items: center;
         grid-template-columns: 1fr;
         grid-template-areas: "images" "details" "tabs";
 
@@ -196,6 +195,10 @@
                     font-size: 16px;
                     font-weight: $font-weight-regular;
                 }
+
+                span {
+                    font-weight: $font-weight-semibold;
+                }
             }
         }
 
@@ -274,6 +277,19 @@
                         }
                     }
                 }
+            }
+        }
+
+        .relatedproducts {
+            .title {
+                
+                h3 {
+                    font-size: 20px;
+                    font-family: $font-poppins;
+                    font-weight: $font-weight-semibold;
+                    color: $color-dark-1;
+                }
+                
             }
         }
     }

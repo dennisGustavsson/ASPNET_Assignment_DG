@@ -16,14 +16,19 @@
 			}
 		</div>
 		<div class="roles">
-			<ul>
-				@foreach (var role in Model.Roles)
-				{
-					<li class="roleName">@role</li>
-				}
-			</ul>
+
 			<div class="roleOptions">
-				<div>
+				
+					<div>
+						<span>Roles: </span>
+						<ul>
+							@foreach (var role in Model.Roles)
+							{
+								<li class="roleName">@role</li>
+							}
+						</ul>
+					</div>
+
 					<form asp-controller="Admin" asp-action="AddRole" method="post">
 						<div class="addRoles">
 							<select name="role">
@@ -40,7 +45,7 @@
 
 					</form>
 
-				</div>
+				
 
 				<div>
 					@if (userManager.GetUsersInRoleAsync("admin").Result.Count() >= 2)
@@ -61,14 +66,10 @@
 
 						</form>
 					}
-					<a asp-controller="admin" asp-action="deleteuser" asp-route-id="@Model.UserId">Delete User</a>
 				</div>
 			</div>
 		</div>
-		
+					<a asp-controller="admin" asp-action="deleteuser" asp-route-id="@Model.UserId" class="btn-theme">Delete User</a>
 	</div>
-	
-	
-	@*<a asp-action="index" asp-controller="account" >details</a>*@
 
 </div>

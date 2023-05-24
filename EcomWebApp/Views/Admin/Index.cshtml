@@ -2,12 +2,15 @@
     ViewData["Title"] = "Backoffice";
 }
 
-<div style="padding-top:120px" class="container">
-    <h1>
-        backoffice!
-    </h1>
-    <a asp-controller="productsmanager" asp-action="index">Product Manager</a>
-    <a asp-controller="admin" asp-action="users">Users</a>
+<div style="padding-top:120px" class="backoffice">
+    <div class="container">
+        <h3>
+            Administration
+        </h3>
+        <a asp-controller="productsmanager" asp-action="index" class="btn-theme">Product Manager</a>
+        <a asp-controller="admin" asp-action="users" class="btn-theme">Users</a>
+    </div>
+
     
 
 </div>

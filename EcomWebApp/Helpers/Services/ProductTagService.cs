@@ -19,12 +19,6 @@ public class ProductTagService
 		_context = context;
 	}
 
-/*	public async Task<Tag> GetTagsByProduct(int id)
-	{
-		var items = await _productTagRepo.GetAllAsync(x=>x.ProductId == id);
-
-
-	}*/
 
 
 }

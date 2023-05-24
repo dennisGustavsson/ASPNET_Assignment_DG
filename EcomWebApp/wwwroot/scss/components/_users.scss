@@ -20,21 +20,24 @@
 
         .user-list-item {
             border-bottom: 1px solid $color-dark-4;
-            display:flex;
-            justify-content:center;
-
-/*            @include lg {
+            display: flex;
+            justify-content: center;
+                        @include lg {
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
-            }*/
+            }
 
             .listviewrow {
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
                 padding-block: 1rem;
+                flex-direction: column;
 
+                @include lg {
+                    flex-direction: row;
+                }
                 img {
                     height: 70px;
                 }
@@ -64,6 +67,7 @@
 
                 .roles {
                     display: flex;
+                    /*flex-direction: column;*/
                     flex: 1;
 
                     ul {
@@ -72,11 +76,17 @@
                     }
 
                     .roleName {
+                        font-size: 0.8rem;
                     }
 
                     .roleOptions {
                         display: flex;
                         flex: 1;
+                        flex-direction:column;
+
+                        @include lg {
+                            flex-direction:row;
+                        }
 
                         .addRoles, .removeRoles {
                             display: flex;

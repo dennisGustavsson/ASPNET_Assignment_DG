@@ -40,7 +40,7 @@ public class HomeController : Controller
         { Id = product.Id, Title = product.Name, Price = product.Price, ImageUrl = product.HeroImageUrl });
 
         //Get Top Selling (Popular)
-        var popular = await _productService.GetAllByTagsAsync("Popular", 7);
+        var popular = await _productService.GetAllByTagsAsync("Popular", 6);
         var popularGridItems = popular.Select(product => new GridItemViewModel
         { Id = product.Id, Title = product.Name, Price = product.Price, ImageUrl = product.HeroImageUrl });
 

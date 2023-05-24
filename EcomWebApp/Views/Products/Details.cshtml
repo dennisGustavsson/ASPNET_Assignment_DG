@@ -76,14 +76,14 @@
                 <button class="btn-outline-white">Add to wishlist</button>
             </div>
             <div class="categories">
-                <h3>Category</h3>
-                <div>@Model.Product.ProductCategory.CategoryName</div>
+                
+                <div><h3>Category: </h3> <span>@Model.Product.ProductCategory.CategoryName</span></div>
                 <div>
                     @if(Model.Product.Tags != null)
                     {
                         @foreach (var tag in Model.Product.Tags)
                         {
-                            <span>@tag</span>
+                            <span>@tag, </span>
                         }
                     }
 
@@ -119,8 +119,13 @@
 
             </div>
         </div>
+        <div class="relatedproducts">
+            <div class="title"><h3>Related Products</h3></div>
+
+        </div>
     </div>
 </section>
+            <partial name="/Views/Partials/_GridCollection.cshtml" model="@Model.RelatedProducts" />
 
 
 

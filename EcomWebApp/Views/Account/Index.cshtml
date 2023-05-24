@@ -1,7 +1,18 @@
-﻿@{
+﻿@model UserProfileCardViewModel
+@{
     ViewData["Title"] = User.FindFirst("DisplayName")?.Value;
 }
 
 <div class="container" style="padding-top: 100px">
-    @ViewData["Title"]    
+   
+    <h3>@Model.FirstName</h3>
+    <h3>@Model.LastName</h3>
+    <h3>@foreach(var adress in Model.Addresses)
+        {
+            <span>@adress.Address.StreetName</span>
+            <span>@adress.Address.PostalCode</span>
+            <span>@adress.Address.City</span>
+          
+        }
+    </h3>
 </div>

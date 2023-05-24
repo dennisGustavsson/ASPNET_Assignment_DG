@@ -11,11 +11,12 @@ public class UsersService
 {
 	private readonly IdentityContext _identityContext;
 	private readonly UserManager<AppUser> _userManager;
-
-    public UsersService(IdentityContext identityContext, UserManager<AppUser> userManager)
+    private readonly SignInManager<AppUser> _signInManager;
+    public UsersService(IdentityContext identityContext, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
     {
         _identityContext = identityContext;
         _userManager = userManager;
+        _signInManager = signInManager;
     }
 
     public async Task<IEnumerable<UserProfileCardViewModel>> GetAllAsync()
@@ -38,7 +39,8 @@ public class UsersService
 	return usersProfiles;
 	}
 
-	public async Task DeleteUserAsync(AppUser user)
+
+    public async Task DeleteUserAsync(AppUser user)
 	{
 		await _userManager.DeleteAsync(user);
 	}

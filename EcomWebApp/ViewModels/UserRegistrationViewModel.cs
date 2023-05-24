@@ -51,9 +51,10 @@ public class UserRegistrationViewModel
     [Required(ErrorMessage = "You need to confirm your password.")]
     public string ConfirmPassword { get; set; } = null!;
 
-    [Display(Name = "Uplad Profile Picture")]
+    // Ej prio
+/*    [Display(Name = "Uplad Profile Picture")]
     [DataType(DataType.Upload)]
-    public IFormFile? ProfileImage { get; set; }
+    public IFormFile? ProfileImage { get; set; }*/
 
     [Display(Name = "I have read and accepts the terms and agreement")]
     [Required(ErrorMessage = "You need to accept the terms and agreement.")]

@@ -5,9 +5,6 @@ using EcomWebApp.Models.Dtos;
 using EcomWebApp.Models.Entities;
 using EcomWebApp.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq.Expressions;
 
 namespace EcomWebApp.Helpers.Services;
 
@@ -47,23 +44,17 @@ public class ProductService
 		{
 			_entity = await _productRepo.AddAsync(model);
 			if (_entity != null)
+			{
+				var category = await _context.ProductCategories.FirstOrDefaultAsync(x => x.Id == _entity.ProductCategoryId);
+				_entity.ProductCategory = category!;
 				return _entity;
+			}
 		}
 		return null!;
 	}
-	/*	public async Task<bool> CreateProductAsync(ProductRegistrationViewModel model)
-		{
-			var _entity = await _productRepo.GetAsync(x => x.Name == model.Name);
-			if (_entity == null)
-			{
-				_entity = await _productRepo.AddAsync(model);
-				if (_entity != null)
-					return true;
-			}
-			return false;
-		}*/
 
-	public async Task AddTagsAsync(ProductEntity entity, string[] tags)
+
+	public async Task AddTagsAsync(Product entity, string[] tags)
 	{
 		foreach (var tag in tags)
 		{
@@ -77,11 +68,9 @@ public class ProductService
     public async Task<ProductEntity> GetAsync(int id)
     {
         var item = await _productRepo.GetAsync(x => x.Id == id);
-
         return item;
-
     }
-    public async Task<ProductEntity> GetAsync(string name)
+    public async Task<Product> GetAsync(string name)
     {
         var item = await _productRepo.GetAsync(x => x.Name == name);
         return item;
@@ -89,11 +78,9 @@ public class ProductService
 
 	public async Task<bool> UploadImageAsync(Product product, IFormFile image)
 	{
-
             string imagePath = $"{_webHostEnv.WebRootPath}/images/products/{product.HeroImageUrl}";
             await image.CopyToAsync(new FileStream(imagePath, FileMode.Create));
 			return true;
-
 	}
 
     public async Task<IEnumerable<Product>> GetAllAsync()
@@ -103,7 +90,9 @@ public class ProductService
 		foreach (var item in items)
 		{
 			Product product = item;
-			products.Add(product);
+			var category = await _context.ProductCategories.FirstOrDefaultAsync(x=>x.Id == item.ProductCategoryId);
+			product.ProductCategory = category!;
+            products.Add(product);
 		};
 		return products;
 	}
@@ -115,6 +104,29 @@ public class ProductService
 		if (category != null)
 		{
             var _items = await _context.Products.Where(p => p.ProductCategory.CategoryName == category).ToListAsync();
+            foreach (var item in _items)
+            {
+                Product product = item;
+                products.Add(product);
+            };
+            return products;
+        }
+        var items = await _context.Products.ToListAsync();
+        foreach (var item in items)
+        {
+            Product product = item;
+            products.Add(product);
+        };
+        return products;
+
+    }
+    public async Task<IEnumerable<Product>> GetAllByCategoryAsync(string? category, int count)
+    {
+        var products = new List<Product>();
+
+        if (category != null)
+        {
+            var _items = await _context.Products.Where(p => p.ProductCategory.CategoryName == category).Take(count).ToListAsync();
             foreach (var item in _items)
             {
                 Product product = item;
@@ -157,4 +169,6 @@ public class ProductService
         };
         return products;
     }
+
+
 }
