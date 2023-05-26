@@ -1,5 +1,6 @@
 ﻿using EcomWebApp.Contexts;
 using EcomWebApp.Helpers.Services;
+using EcomWebApp.Models.Dtos;
 using EcomWebApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -128,6 +129,19 @@ public class ProductsManagerController : Controller
 			return RedirectToAction("Register", "ProductsManager");
 		}
 		return View(model);
+	}
+
+	public async Task<IActionResult> DeleteProduct(int id)
+	{
+		var product = await _context.Products.FirstOrDefaultAsync(x=>x.Id == id);
+
+		if(product != null)
+		{
+			await _productService.DeleteProduct(product);
+
+		}
+		return RedirectToAction("index", "productsmanager");
+
 	}
 
 }

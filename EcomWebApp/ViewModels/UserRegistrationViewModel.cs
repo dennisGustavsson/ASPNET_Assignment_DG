@@ -30,6 +30,7 @@ public class UserRegistrationViewModel
     public string? PhoneNumber { get; set; }
 
     [Display(Name = "Company Name")]
+    [MaxLength(100)]
     public string? CompanyName { get; set; }
 
     [Display(Name = "E-mail")]

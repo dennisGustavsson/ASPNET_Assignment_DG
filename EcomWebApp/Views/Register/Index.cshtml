@@ -38,11 +38,13 @@
             </div>
             <div class="phoneNumber form-group">
                 <label asp-for="PhoneNumber">Phone Number (optional)</label>
-                <input asp-for="PhoneNumber" id="phone" autocomplete="off">
+                <input asp-for="PhoneNumber" id="phoneNumber" autocomplete="off">
+                <span asp-validation-for="PhoneNumber" id="spanErrorPhoneNumber" class="error"></span>
             </div>
             <div class="companyName form-group">
                 <label asp-for="CompanyName">Company (optional)</label>
-                <input asp-for="CompanyName" id="company" autocomplete="off">
+                <input asp-for="CompanyName" id="companyName" autocomplete="off">
+                <span asp-validation-for="CompanyName" id="spanErrorCompanyName" class="error"></span>
             </div>
             <div class="email form-group">
                 <label asp-for="Email"></label>

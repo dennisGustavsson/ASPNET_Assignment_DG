@@ -1066,7 +1066,10 @@ footer .container {
 }
 .product-manager-list .container .product-list-item .description {
   font-size: 12px;
-  max-width: 500px;
+  width: 400px;
+  padding: 1rem;
+}
+.product-manager-list .container .product-list-item .removeproduct {
   padding: 1rem;
 }
 

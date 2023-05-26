@@ -35,7 +35,7 @@ footerPosition('footer', document.body.scrollHeight, window.innerHeight);
 // FORM VALIDATIONS
 
 const form = document.querySelector('form');
-const inputs = document.querySelectorAll('input:not(#company,[type="checkbox"]), textarea:not(#description)'); //selects all inputs or textareas
+const inputs = document.querySelectorAll('input:not([type="checkbox"],#Image), textarea:not(#description)'); //selects all inputs or textareas
 
 
 // Validation rules for each input field
@@ -48,6 +48,7 @@ const validationRules = {
     confirmPassword: { regex: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+=[{\]}\\|;:'",<.>/?]).{8,}$/, message: 'Password needs to have at least 1 capitalized character, a number and a special character, 8 characters long.' },
     message: { regex: /^.{10,}$/, message: 'Message should be at least 10 characters long.' },
     phoneNumber: { regex: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/, message: 'Enter a legit phonenumber, no letters.'},
+    companyName: { regex: /^.{0,50}$/, message: 'Company name should not exceed 50 characters.' },
     streetName: { regex: /^\S.*\s\d+[a-zA-Z]?$/, message: 'Streetname must be at least 2 characters long.' },
     city: { regex: /^[A-Za-zÀ-ÖØ-öø-ÿ]+([- ][A-Za-zÀ-ÖØ-öø-ÿ]+)*$/, message: 'City should only contain letters and spaces, and be at least 2 characters long.' },
     postalcode: { regex: /^\d{5}(?:[-\s]\d{4})?$|^[A-Z]{1,2}\d{1,2}\s?\d{1,2}[A-Z]{0,2}$/, message: 'Postalcode with numbers only' },
@@ -74,7 +75,7 @@ try {
             }
         });
     });
-
+    //submitting category dropdown
     form.addEventListener('submit', (event) => {
         const selectCategory = document.querySelector('#productCategory');
         if (selectCategory) {
@@ -104,7 +105,6 @@ try {
         });
         if (isFormValid) {
             form.submit();
-            console.log("submitting!");
         } else {
             alert('Please fill out all required fields.');
         }
@@ -125,6 +125,7 @@ try {
             validationDiv.className = 'error';
             return;
         }
+
         const isValid = validationRule.regex.test(input.value);
         const validationDiv = document.getElementById(input.id);
         const validationSpan = document.getElementById(`spanError${input.id.charAt(0).toUpperCase() + input.id.slice(1)}`);

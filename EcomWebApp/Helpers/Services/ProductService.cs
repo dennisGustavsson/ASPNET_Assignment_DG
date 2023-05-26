@@ -169,5 +169,10 @@ public class ProductService
         return products;
     }
 
+    public async Task DeleteProduct(ProductEntity product)
+    {
+        await _productRepo.DeleteAsync(product);
+    }
+
 
 }

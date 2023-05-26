@@ -25,7 +25,8 @@
             </div>
             <div class="companyName form-group">
                 <label asp-for="CompanyName">Company (optional)</label>
-                <input asp-for="CompanyName" id="company" autocomplete="off">
+                <input asp-for="CompanyName" id="companyName" autocomplete="off">
+                <span asp-validation-for="CompanyName" id="spanErrorCompanyName" class="error"></span>
             </div>
             <div class="message form-group">
                 <label asp-for="Message">Message*</label>
