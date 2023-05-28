@@ -1,6 +1,5 @@
 ﻿using EcomWebApp.Contexts;
 using EcomWebApp.Helpers.Services;
-using EcomWebApp.Models.Dtos;
 using EcomWebApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,25 +29,26 @@ public class ProductsManagerController : Controller
 
 	public async Task<IActionResult> Index()
     {
-        if (!await _context.Tags.AnyAsync())
-        {
-            await _tagService.CreateTagAsync("New");
-            await _tagService.CreateTagAsync("Featured");
-            await _tagService.CreateTagAsync("Popular");
-            await _tagService.CreateTagAsync("On Sale");
-        }
-        if (!await _context.ProductCategories.AnyAsync())
-        {
-            await _productCategoryService.CreateCategoryAsync("Laptops");
-            await _productCategoryService.CreateCategoryAsync("PC");
-            await _productCategoryService.CreateCategoryAsync("Monitors");
-            await _productCategoryService.CreateCategoryAsync("Network");
-            await _productCategoryService.CreateCategoryAsync("Multimedia");
-            await _productCategoryService.CreateCategoryAsync("Gaming");
+		//creates base tags and categories
+		if (!await _context.Tags.AnyAsync())
+		{
+			await _tagService.CreateTagAsync("New");
+			await _tagService.CreateTagAsync("Featured");
+			await _tagService.CreateTagAsync("Popular");
+			await _tagService.CreateTagAsync("On Sale");
+		}
+		if (!await _context.ProductCategories.AnyAsync())
+		{
+			await _productCategoryService.CreateCategoryAsync("Laptops");
+			await _productCategoryService.CreateCategoryAsync("PC");
+			await _productCategoryService.CreateCategoryAsync("Monitors");
+			await _productCategoryService.CreateCategoryAsync("Network");
+			await _productCategoryService.CreateCategoryAsync("Multimedia");
+			await _productCategoryService.CreateCategoryAsync("Gaming");
 
-        }
+		}
 
-        var products = await _productService.GetAllAsync();
+		var products = await _productService.GetAllAsync();
 
         return View(products);
     }

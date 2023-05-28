@@ -1,6 +1,5 @@
 ﻿using EcomWebApp.Contexts;
 using EcomWebApp.Helpers.Repos.ProductRepo;
-using EcomWebApp.Models;
 using EcomWebApp.Models.Dtos;
 using EcomWebApp.Models.Entities;
 using EcomWebApp.ViewModels;
