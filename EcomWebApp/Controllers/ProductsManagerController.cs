@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EcomWebApp.Controllers;
 
-[Authorize(Roles = "admin")]
+/*[Authorize(Roles = "admin")]*/
 public class ProductsManagerController : Controller
 {
 

@@ -11,13 +11,13 @@ public class UsersService
 {
 	private readonly IdentityContext _identityContext;
 	private readonly UserManager<AppUser> _userManager;
-    private readonly SignInManager<AppUser> _signInManager;
+/*    private readonly SignInManager<AppUser> _signInManager;*/
     public UsersService(IdentityContext identityContext, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
     {
         _identityContext = identityContext;
         _userManager = userManager;
-        _signInManager = signInManager;
-    }
+/*        _signInManager = signInManager;
+*/    }
 
     public async Task<IEnumerable<UserProfileCardViewModel>> GetAllAsync()
 	{
