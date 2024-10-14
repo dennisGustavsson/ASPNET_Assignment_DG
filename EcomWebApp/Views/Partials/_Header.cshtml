@@ -7,11 +7,11 @@
             <a class="link" asp-controller="contact" asp-action="Index">CONTACT</a>
             @if(signInManager.IsSignedIn(User) && User.IsInRole("admin"))
             {
-                <a class="link" asp-controller="admin" asp-action="Index"> <span>Backoffice</span><i class="fa-solid fa-user-unlock"></i> </a>
+                <a class="link" asp-controller="admin" asp-action="Index"> <span>Backoffice </span><i class="fa-solid fa-user-tie"> </i> </a>
             }
         </nav>
         <nav class="menu-icons">
-            <a class="link" href="#"><i class="fa-regular fa-search"></i></a>
+            <a class="link" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
             @if(signInManager.IsSignedIn(User))
             {
 

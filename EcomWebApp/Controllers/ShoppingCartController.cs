@@ -28,9 +28,13 @@ public class ShoppingCartController : Controller
     {
         if(viewModel.ShoppingCartItem is not null)
         {
+            var result = _shoppingCartService.AddToCart(viewModel.ShoppingCartItem);
+            if (result.IsSuccess)
+            {
+                return RedirectToAction("Details", "Products", new { id = viewModel.ShoppingCartItem.ProductId });
+            }
 
-        _shoppingCartService.AddToCart(viewModel.ShoppingCartItem);
-        return RedirectToAction("Details", "Products", new {id = viewModel.ShoppingCartItem.ProductId});
+            return View("Details", viewModel.ShoppingCartItem.ProductId);
         }
         return View("Details", viewModel.ShoppingCartItem!.ProductId);
 
@@ -47,5 +51,12 @@ public class ShoppingCartController : Controller
         };
 
         return View(viewModel);
+    }
+
+    [HttpPost]
+    public IActionResult RemoveFromCart(int productId)
+    {
+        _shoppingCartService.RemoveFromCart(productId);
+        return RedirectToAction("Index");
     }
 }
