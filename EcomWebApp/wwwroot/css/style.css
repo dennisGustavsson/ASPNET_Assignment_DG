@@ -1572,3 +1572,24 @@ footer .container {
 .userProfile .userAddress ul {
   list-style: none;
 }
+
+.cart-container {
+  color: black;
+  padding-top: 4rem;
+}
+.cart-container .cart-header {
+  padding-top: 2rem;
+}
+.cart-container .cart-header .cart-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cart-container .cart-header .cart-items .cart-item {
+  display: flex;
+  flex-direction: column;
+}
+.cart-container .cart-header .cart-items .cart-item .product-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+}

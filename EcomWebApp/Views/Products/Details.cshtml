@@ -48,6 +48,7 @@
                     "Amount" of reviews
                 </span>
             </div>
+            <form asp-controller="ShoppingCart" asp-action="AddToCart" method="post">
             <div class="price">
                 <h3>$@Model.Product.Price.ToString("F2")</h3>
             </div>
@@ -59,16 +60,19 @@
                     </button>
 
                     <span class="amount">
-                        2
+                        <input type="number" id="quantity" asp-for="ShoppingCartItem.Quantity" value="1" min="1"/>
                     </span>
 
                     <button class="plusBtn">
                         <i class="fa-solid fa-plus"></i>
                     </button>
                 </span>
+                    <input type="hidden" asp-for="ShoppingCartItem.ProductId" value="@Model.Product.Id"/>
+                    <input type="hidden" asp-for="ShoppingCartItem.ProductName" value="@Model.Product.Name" />
+                    <input type="hidden" asp-for="ShoppingCartItem.Price" value="@Model.Product.Price" />
 
+                <button class="btn-theme" type="submit"> Add to cart <i class="fa-solid fa-cart-plus"></i></button>
 
-                <button class="btn-theme"> Add to cart <i class="fa-solid fa-cart-plus"></i></button>
             </div>
             <div class="product-colors">
                 <i id="product-color-1" class="fa-solid fa-circle"></i>
@@ -76,6 +80,7 @@
                 <i id="product-color-3" class="fa-solid fa-circle"></i>
                 <span>SKU: N/A</span>
             </div>
+            </form>
             <div class="add-to-wishlist">
                 <button class="btn-outline-white">Add to wishlist</button>
             </div>

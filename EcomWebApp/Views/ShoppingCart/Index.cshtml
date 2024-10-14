@@ -1,0 +1,40 @@
+﻿@model ShoppingCartViewModel
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<div class="container">
+    <div class="cart-container">
+        <div class="cart-header">
+            <h2>Shopping Cart</h2>
+            <div class="cart-items">
+
+            
+            @if(Model.Cart != null && Model.Cart.Any())
+            {
+                @foreach (var item in Model.Cart)
+                {
+                    <div class="cart-item">
+                        <div class="product-name">
+                            Product: 
+                        @item.ProductName
+                        </div>
+                        <div class="quantity">
+                            Quantity: 
+                            @item.Quantity
+                            </div>
+                            <div class="price">
+                                Price:
+                                @item.Price
+                            </div>
+                    </div>
+                }
+                
+            } else
+            {
+                <span>Your cart is empty</span>
+            }
+            </div>
+        </div>
+    </div>
+</div>

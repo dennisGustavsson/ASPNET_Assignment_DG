@@ -1,0 +1,23 @@
+.cart-container {
+    color: black;
+    padding-top: 4rem;
+
+    .cart-header {
+        padding-top: 2rem;
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+            justify-content:center;
+
+            .cart-item {
+                display: flex;
+                flex-direction: column;
+
+                .product-name {
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}

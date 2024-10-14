@@ -27,6 +27,7 @@ builder.Services.AddScoped<UsersService>();
 builder.Services.AddScoped<TagService>();
 builder.Services.AddScoped<ProductTagService>();
 builder.Services.AddScoped<ProductCategoryService>();
+builder.Services.AddScoped<ShoppingCartService>();
 //Repos
 builder.Services.AddScoped<AddressRepository>();
 builder.Services.AddScoped<UserAddressRepository>();
@@ -53,12 +54,25 @@ builder.Services.ConfigureApplicationCookie(x =>
     x.AccessDeniedPath = "/denied";
 });
 
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".EcomWebApp.Session";
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddHttpContextAccessor();
+
 
 var app = builder.Build();
 app.UseHsts();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseSession();
 app.UseAuthentication(); // added this one
 app.UseAuthorization();
 app.MapControllerRoute(
