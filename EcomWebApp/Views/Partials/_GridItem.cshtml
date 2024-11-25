@@ -1,19 +1,39 @@
 ﻿@model GridItemViewModel
 
-<a asp-controller="products" asp-action="details" asp-route-id="@Model.Id" class="collection-item">
+<div class="collection-item" onclick="location.href='@Url.Action("Details", "Products", new { id = Model.Id })';" style="cursor: pointer;">
     @if(Model.ImageUrl == null)
     {  
         <img src="/images/placeholders/501x430.svg" alt="@Model.Title">
     } else
     {
-        
-    <img src="/images/products/@Model.ImageUrl" alt="@Model.Title">
+        <img src="/images/products/@Model.ImageUrl" alt="@Model.Title">
     }
     <div class="body">
         <div class="item-title">@Model.Title</div>
         <div class="info">
             <div class="price">$@Model.Price.ToString("F2")</div>
-            <i class="add-cart fa-solid fa-cart-plus"></i>
+            <button onclick="event.stopPropagation(); addToCart(@Model.Id)"><i class="add-cart fa-solid fa-cart-plus"></i></button>
         </div>
     </div>
-</a>
+</div>
+
+<script type="text/javascript">
+    function addToCart(productId) {
+        $.ajax({
+            url: '@Url.Action("AddToCart", "ShoppingCart")',
+            type: 'POST',
+            data: { 'viewModel.ShoppingCartItem.ProductId': productId },
+            success: function(response) {
+                if (response.success) {
+                    alert(response.message);
+                    // Optional: Update the cart item count or other cart details on the page
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                alert("An error occurred while adding the product to the cart.");
+            }
+        });
+    }
+</script>

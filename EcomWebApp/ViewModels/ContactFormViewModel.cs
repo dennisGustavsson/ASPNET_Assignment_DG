@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EcomWebApp.ViewModels;
 
-public class ContactFormViewModel
+public class ContactFormViewModel : BaseViewModel
 {
 	[Required(ErrorMessage = "A name is required")]
 	public string Name { get; set; } = null!;

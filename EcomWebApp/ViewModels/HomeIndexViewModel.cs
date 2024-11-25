@@ -1,6 +1,6 @@
 ﻿namespace EcomWebApp.ViewModels;
 
-public class HomeIndexViewModel
+public class HomeIndexViewModel : BaseViewModel
 {
     public GridCollectionViewModel Featured { get; set; } = null!;
     public UpForSaleViewModel UpForSale { get; set; } = null!;

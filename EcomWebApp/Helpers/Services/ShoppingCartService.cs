@@ -1,4 +1,5 @@
-﻿using EcomWebApp.Models;
+﻿using EcomWebApp.Contexts;
+using EcomWebApp.Models;
 using FluentResults;
 using System.Text.Json;
 
@@ -7,16 +8,15 @@ namespace EcomWebApp.Helpers.Services;
 public class ShoppingCartService
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly DataContext _context;
     //TODO  add a session key bound to the specific user
     private const string SessionKey = "_ShoppingCart";
 
-    public ShoppingCartService(IHttpContextAccessor httpContextAccessor)
+    public ShoppingCartService(IHttpContextAccessor httpContextAccessor, DataContext context)
     {
         _httpContextAccessor = httpContextAccessor;
+        _context = context;
     }
-
-
-
 
     public List<ShoppingCartItem> GetCart()
     {
@@ -24,28 +24,25 @@ public class ShoppingCartService
         var session = _httpContextAccessor.HttpContext?.Session;
         if (session == null || session.GetString(SessionKey) == null)
         {
+
             return new List<ShoppingCartItem>(); // return empty cart if no session exists
         }
 
         // Deserialize shopping cart from session
         var data = session.GetString(SessionKey);
-        return JsonSerializer.Deserialize<List<ShoppingCartItem>>(data!) ?? new List<ShoppingCartItem>();
+        var list = JsonSerializer.Deserialize<List<ShoppingCartItem>>(data!) ?? new List<ShoppingCartItem>();
+        foreach (var item in list)
+        {
+            var product = _context.Products.Find(item.ProductId);
+            if (product != null)
+            {
+                item.ProductName = product.Name;
+                item.Price = product.Price;
+            }
+        }
+        return list;
     }
 
-/*    public void AddToCart(ShoppingCartItem item)
-    {
-        var cart = GetCart();
-        var existingItem = cart.FirstOrDefault(x => x.ProductId == item.ProductId);
-        if (existingItem == null)
-        {
-            cart.Add(item);
-        }
-        else
-        {
-            existingItem.Quantity += item.Quantity;
-        }
-        SaveCart(cart);
-    }*/
 
     public Result AddToCart(ShoppingCartItem item)
     {
@@ -83,6 +80,37 @@ public class ShoppingCartService
         if (item != null)
         {
             cart.Remove(item);
+            SaveCart(cart);
+        }
+    }
+    public int GetCartCount()
+    {
+        var cart = GetCart();
+        return cart.Count;
+    }
+
+    public void IncrementQuantity(int productId)
+    {
+        var cart = GetCart();
+        var item = cart.FirstOrDefault(x => x.ProductId == productId);
+        if (item != null)
+        {
+            item.Quantity++;
+            SaveCart(cart);
+        }
+    }
+
+    public void DecrementQuantity(int productId)
+    {
+        var cart = GetCart();
+        var item = cart.FirstOrDefault(x => x.ProductId == productId);
+        if (item != null)
+        {
+            item.Quantity--;
+            if (item.Quantity == 0)
+            {
+                cart.Remove(item);
+            }
             SaveCart(cart);
         }
     }

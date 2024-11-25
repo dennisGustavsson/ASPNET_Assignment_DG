@@ -12,4 +12,6 @@ public class Product
     public string? HeroImageUrl { get; set; }
     public string? ExtraImageUrl { get; set; }
     public IEnumerable<string>? Tags { get; set; }
+
+    public int Quantity { get; set; }
 }
