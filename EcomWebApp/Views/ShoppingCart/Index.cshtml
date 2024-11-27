@@ -22,11 +22,20 @@
                         <div class="quantity">
                             Quantity: 
                             @item.Quantity
+
                             </div>
                             <div class="price">
                                 Price:
                                 @item.Price
                             </div>
+
+                            <div>
+                                <form asp-controller="ShoppingCart" asp-action="RemoveFromCart" method="post">
+                                    <input type="hidden" name="productId" value="@item.ProductId" />
+                                    <button type="submit">Remove from cart</button>
+                                </form>
+                            </div>
+
                     </div>
                 }
                 

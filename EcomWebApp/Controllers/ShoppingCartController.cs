@@ -1,5 +1,4 @@
 ﻿using EcomWebApp.Helpers.Services;
-using EcomWebApp.Models;
 using EcomWebApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +17,8 @@ public class ShoppingCartController : Controller
     {
         var model = new ShoppingCartViewModel
         {
-            Cart = _shoppingCartService.GetCart()
+            Cart = _shoppingCartService.GetCart(),
+            ItemCount = _shoppingCartService.GetCart().Count
         };
         return View(model);
     }
@@ -26,17 +26,19 @@ public class ShoppingCartController : Controller
     [HttpPost]
     public IActionResult AddToCart(ProductDetailsViewModel viewModel)
     {
-        if(viewModel.ShoppingCartItem is not null)
+        if(viewModel.ShoppingCartItem != null)
         {
             var result = _shoppingCartService.AddToCart(viewModel.ShoppingCartItem);
-            if (result.IsSuccess)
+
+            if(result.IsSuccess)
             {
-                return RedirectToAction("Details", "Products", new { id = viewModel.ShoppingCartItem.ProductId });
+                return Json(new {success = true, message = "Product added to cart successfully" });
             }
 
-            return View("Details", viewModel.ShoppingCartItem.ProductId);
+            return Json(new { success = false, message = "failed to add product to the cart" });
         }
-        return View("Details", viewModel.ShoppingCartItem!.ProductId);
+        return Json(new { success = false, message = "invalid product data" });
+
 
     }
 
@@ -53,10 +55,34 @@ public class ShoppingCartController : Controller
         return View(viewModel);
     }
 
+    [HttpGet]
+    public IActionResult GetCartCount()
+    {
+        int itemCount = _shoppingCartService.GetCartCount();
+        return Json(new { itemCount });
+    }
+
     [HttpPost]
     public IActionResult RemoveFromCart(int productId)
     {
         _shoppingCartService.RemoveFromCart(productId);
         return RedirectToAction("Index");
     }
+
+    [HttpPost]
+    public IActionResult IncrementQuantity(int productId)
+    {
+        _shoppingCartService.IncrementQuantity(productId);
+        return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public IActionResult DecrementQuantity(int productId)
+    {
+        _shoppingCartService.DecrementQuantity(productId);
+        return RedirectToAction("Index");
+    }
+
+
+    // TODO ! ! ! ! ! ADD AJAX FOR SHOPPINGCART LOGICS IN FRONTEND
 }
