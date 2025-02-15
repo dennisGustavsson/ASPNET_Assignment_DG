@@ -14,29 +14,48 @@
             {
                 @foreach (var item in Model.Cart)
                 {
-                    <div class="cart-item">
-                        <div class="product-name">
-                            Product: 
-                        @item.ProductName
-                        </div>
-                        <div class="quantity">
-                            Quantity: 
-                            @item.Quantity
+                    <div class="cart-card">
+                            <div class="cart-item">
+                                <div class="product-name">
+                                    @item.ProductName
+                                </div>
+                                <div>
+                                    Quantity:
+                                    <span class="quantity">
+
+                                        @item.Quantity
+                                    </span>
+
+                                </div>
+                                <div>
+                                    Price:
+                                    <span class="price">
+
+                                        @item.Price
+                                    </span>
+                                </div>
+
+                                <span>
+                                    <form asp-controller="ShoppingCart" asp-action="RemoveFromCart" method="post">
+                                        <input type="hidden" name="productId" value="@item.ProductId" />
+                                        <button class="btn-clean" type="submit">Remove from cart x</button>
+                                    </form>
+                                </span>
 
                             </div>
-                            <div class="price">
-                                Price:
-                                @item.Price
-                            </div>
+                            <span class="product-image">
+                                @if (item.ImageUrl == null)
+                                {
+                                    <img src="/images/placeholders/501x430.svg" alt="@item.ProductName">
+                                }
+                                else
+                                {
 
-                            <div>
-                                <form asp-controller="ShoppingCart" asp-action="RemoveFromCart" method="post">
-                                    <input type="hidden" name="productId" value="@item.ProductId" />
-                                    <button type="submit">Remove from cart</button>
-                                </form>
-                            </div>
-
+                                    <img src="/images/products/@item.ImageUrl" alt="@item.">
+                                }
+                            </span>
                     </div>
+                    
                 }
                 
             } else

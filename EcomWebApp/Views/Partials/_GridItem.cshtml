@@ -12,7 +12,7 @@
         <div class="item-title">@Model.Title</div>
         <div class="info">
             <div class="price">$@Model.Price.ToString("F2")</div>
-            <button onclick="event.stopPropagation(); addToCart(@Model.Id)"><i class="add-cart fa-solid fa-cart-plus"></i></button>
+            <button class="btn-clean" onclick="event.stopPropagation(); addToCart(@Model.Id)"><i class="add-cart fa-solid fa-cart-plus"></i></button>
         </div>
     </div>
 </div>
