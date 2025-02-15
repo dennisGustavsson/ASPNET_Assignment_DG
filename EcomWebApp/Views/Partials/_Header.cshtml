@@ -23,33 +23,38 @@
             {
                 <a class="link" asp-controller="login" asp-action="Index">Login</a>
             }
-
+            
             <a class="link" asp-controller="ShoppingCart" asp-action="Index"><i class="fa-solid fa-cart-shopping"></i> <span id="cart-item-count">0</span></a>
         </nav>
         <div class="toggle">
             <button class="btn-toggle btn-outline-white" data-option="toggle" data-target="#menu">
-                <i id="icon" class="fa-regular fa-bars"></i>
+                <i id="icon" class="fa-solid fa-bars"></i>
             </button>
         </div>
     </div>
 </header>
 
 <script type="text/javascript">
-    
-        function updateCartItemCount() {
-            $.ajax({
-                url: '@Url.Action("GetCartCount", "ShoppingCart")',
-                type: 'GET',
-                success: function(response) {
-                    $('#cart-item-count').text(response.itemCount);
-                    console.log(response.itemCount)
-                },
-                error: function() {
-                    console.error("An error occurred while fetching the cart item count.");
-                }
-            });
-        }
 
-        updateCartItemCount();
+    function updateCartItemCount() {
+        $.ajax({
+            url: '@Url.Action("GetCartCount", "ShoppingCart")',
+            type: 'GET',
+            success: function(response) {
+                $('#cart-item-count').text(response.itemCount);
+                if (response.itemCount > 0) {
+                    $('#cart-item-count').css('display', 'inline-block');
+                } else {
+                    $('#cart-item-count').css('display', 'none');
+                }
+                console.log(response.itemCount)
+            },
+            error: function() {
+                console.error("An error occurred while fetching the cart item count.");
+            }
+        });
+    }
+
+    updateCartItemCount();
     
 </script>

@@ -46,7 +46,12 @@ namespace EcomWebApp.Controllers
 				RedirectToAction("Index");
 			}
 
-			var category = await _categoryService.GetAsync(product!.ProductCategoryId);
+
+            var category = await _categoryService.GetAsync(product!.ProductCategoryId);
+            if(category == null)
+            {
+                RedirectToAction("Index");
+            }
             var tags = await _context.ProductTags
                 .Where(pt=>pt.ProductId == id)
                 .Join(_context.Tags, pt => pt.TagId,

@@ -12,21 +12,21 @@ header {
         justify-content: space-between;
         align-items: center;
         grid-template-columns: 1fr 1fr;
-        grid-template-areas:    "logo toggle";
+        grid-template-areas: "logo toggle";
 
-        @include lg  {
+        @include lg {
             grid-template-columns: 4fr 4fr;
-            grid-template-areas:    "logo menulinks";
+            grid-template-areas: "logo menulinks";
         }
 
         @include xl {
             grid-template-columns: 4fr 4fr 1fr;
-            grid-template-areas:    "logo menulinks menuicons";
+            grid-template-areas: "logo menulinks menuicons";
         }
     }
 
     .logo {
-        grid-area: logo; 
+        grid-area: logo;
         display: flex;
         align-items: center;
         font-size: 27px;
@@ -66,8 +66,8 @@ header {
             background-color: transparent;
             color: $color-dark-2;
             display: flex;
-            justify-content: flex-end;   
-            align-items: center;  
+            justify-content: flex-end;
+            align-items: center;
         }
 
         @include xl {
@@ -78,7 +78,7 @@ header {
             font-family: $font-poppins;
             border: 1px solid $color-dark-1;
             color: $color-white;
-            display: flex; 
+            display: flex;
             justify-content: center;
             padding: 20px 0;
             text-decoration: none;
@@ -95,7 +95,7 @@ header {
                 margin: 0 0 0 30px;
                 justify-content: right;
                 font-size: 16px;
-                
+
                 &:hover {
                     background-color: transparent;
                     color: $color-theme-1;
@@ -111,9 +111,14 @@ header {
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 20px;
+        padding: 10px;
         background-color: $color-dark-2;
         color: $color-white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
 
         @include xl {
             position: static;
@@ -130,6 +135,19 @@ header {
             text-decoration: none;
             margin: 20px;
             font-size: 18px;
+            display: flex;
+
+
+            #cart-item-count {
+                border-radius: 15px;
+                padding: 3px 9px;
+                background-color: red;
+                font-size: 0.7rem;
+                color: white;
+                position: relative;
+                right: 5px;
+                top: -15px;
+            }
 
             &:hover {
                 color: $color-dark-4;
@@ -146,8 +164,6 @@ header {
                 }
             }
         }
-
-
     }
 
     .toggle {
